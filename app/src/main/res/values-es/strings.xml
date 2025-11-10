@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Synhub</string>
+    <string name="login_message">Bienvenido a Synhub porfavor inicia sesión</string>
+    <string name="insert_user_label">Ingresar usuario</string>
+    <string name="user_placeholder">Usuario</string>
+    <string name="insert_password_label">Ingresar contraseña</string>
+    <string name="password_placeholder">Contraseña</string>
+    <string name="sign_in">Iniciar sesión</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="error_title">Error de inicio de sesión</string>
+    <string name="accept">Aceptar</string>
+    <string name="user_not_leader">Tu usuario no es un líder.</string>
+    <string name="invalid_credentials">Usuario o contraseña incorrectos.</string>
+</resources>
