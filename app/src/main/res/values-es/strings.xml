@@ -99,4 +99,5 @@
     <string name="reschedule">Reprogramar</string>
     <string name="mark_completed">Marcar como completado</string>
     <string name="deny">Denegar</string>
+    <string name="reject">Rechazar</string>
 </resources>

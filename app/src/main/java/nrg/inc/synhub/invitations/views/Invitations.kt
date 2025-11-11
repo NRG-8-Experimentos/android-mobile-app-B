@@ -60,7 +60,7 @@ fun Invitations(nav: NavHostController) {
                 function = {
                     nav.navigate("Home")
                 },
-                "Solicitudes de unión",
+                stringResource(id = R.string.join_requests_title),
                 Icons.AutoMirrored.Filled.ArrowBack
             )
         }
@@ -190,7 +190,7 @@ fun InvitationsScreen(modifier: Modifier, nav: NavHostController) {
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
                                         Text(
-                                            text = "Aceptar", fontSize = 15.sp,
+                                            text = stringResource(id = R.string.accept), fontSize = 15.sp,
                                             color = Color.White, fontWeight = FontWeight.Bold
                                         )
 
@@ -214,7 +214,7 @@ fun InvitationsScreen(modifier: Modifier, nav: NavHostController) {
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
                                         Text(
-                                            text = "Rechazar", fontSize = 15.sp,
+                                            text = stringResource(id = R.string.reject), fontSize = 15.sp,
                                             color = Color.White, fontWeight = FontWeight.Bold
                                         )
                                     }
