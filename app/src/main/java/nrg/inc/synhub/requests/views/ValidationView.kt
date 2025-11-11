@@ -190,7 +190,7 @@ fun ValidationDetails(
                         Spacer(modifier = Modifier.height(10.dp))
                         HorizontalDivider(thickness = 2.dp)
                         Spacer(modifier = Modifier.height(10.dp))
-                        Text(text = stringResource(id = R.string.validation_comment_label) + ": ${request?.task?.description}", color = Color.White)
+                        Text(text = stringResource(id = R.string.comment) + ": ${request?.task?.description}", color = Color.White)
                     }
                 }
                 Column(

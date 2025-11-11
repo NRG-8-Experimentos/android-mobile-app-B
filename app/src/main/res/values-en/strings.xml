@@ -93,7 +93,7 @@
     <string name="date_picker_ok">OK</string>
     <string name="date_picker_cancel">Cancel</string>
     <string name="validation_top_bar_title">Task validation</string>
-    <string name="validation_comment_label">Comment</string>
+    <string name="comment">Comment</string>
     <string name="validation_time_development">Development time</string>
     <string name="validation_time_development_assigned">Assigned development time</string>
     <string name="reschedule">Reschedule</string>

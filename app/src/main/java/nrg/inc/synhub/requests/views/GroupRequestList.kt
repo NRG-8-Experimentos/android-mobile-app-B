@@ -63,7 +63,7 @@ fun GroupRequestList(nav: NavHostController) {
                 function = {
                     nav.popBackStack()
                 },
-                title = "Solicitudes y Validaciones",
+                title = stringResource(id = R.string.requests_validations_title),
                 Icons.AutoMirrored.Filled.ArrowBack
             )
         }
@@ -185,7 +185,7 @@ fun GroupRequestsScreen(
                                             Spacer(modifier = Modifier.height(10.dp))
                                             HorizontalDivider(thickness = 2.dp)
                                             Spacer(modifier = Modifier.height(10.dp))
-                                            Text(text = "Comentario: ${request.description}", color = Color.Black)
+                                            Text(text = stringResource(id = R.string.comment) + ": ${request.description}", color = Color.Black)
                                         }
                                     }
                                     Box(

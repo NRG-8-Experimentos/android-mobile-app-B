@@ -93,7 +93,7 @@
     <string name="date_picker_ok">OK</string>
     <string name="date_picker_cancel">Cancelar</string>
     <string name="validation_top_bar_title">Validación de Tarea</string>
-    <string name="validation_comment_label">Comentario</string>
+    <string name="comment">Comentario</string>
     <string name="validation_time_development">Tiempo de desarrollo</string>
     <string name="validation_time_development_assigned">Tiempo de desarrollo asignado</string>
     <string name="reschedule">Reprogramar</string>
