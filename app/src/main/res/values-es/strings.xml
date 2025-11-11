@@ -100,4 +100,6 @@
     <string name="mark_completed">Marcar como completado</string>
     <string name="deny">Denegar</string>
     <string name="reject">Rechazar</string>
+    <string name="members_top_bar_title">Miembros del grupo</string>
+    <string name="members_no_next_task">Sin próxima tarea</string>
 </resources>
