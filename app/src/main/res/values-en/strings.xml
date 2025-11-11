@@ -12,4 +12,20 @@
     <string name="sign_up">Sign Up</string>
     <string name="error_title">Login error</string>
     <string name="accept">Accept</string>
+    <string name="register_title">Register</string>
+    <string name="name_label">First name</string>
+    <string name="surname_label">Last name</string>
+    <string name="username_label">Username</string>
+    <string name="email_label">Email</string>
+    <string name="url_pfp_label">Profile image URL</string>
+    <string name="password_label">Password</string>
+    <string name="placeholder_name">First name</string>
+    <string name="placeholder_surname">Last name</string>
+    <string name="placeholder_username">Username</string>
+    <string name="placeholder_email">Email</string>
+    <string name="placeholder_url_pfp">Profile image URL</string>
+    <string name="placeholder_password">Password</string>
+    <string name="error_invalid_email">Invalid email address</string>
+    <string name="error_invalid_url">Invalid URL</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
 </resources>

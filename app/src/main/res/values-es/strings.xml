@@ -12,4 +12,20 @@
     <string name="accept">Aceptar</string>
     <string name="user_not_leader">Tu usuario no es un líder.</string>
     <string name="invalid_credentials">Usuario o contraseña incorrectos.</string>
+    <string name="register_title">Registro</string>
+    <string name="name_label">Nombre</string>
+    <string name="surname_label">Apellido</string>
+    <string name="username_label">Usuario</string>
+    <string name="email_label">Correo electrónico</string>
+    <string name="url_pfp_label">URL de imagen</string>
+    <string name="password_label">Contraseña</string>
+    <string name="placeholder_name">Nombre</string>
+    <string name="placeholder_surname">Apellido</string>
+    <string name="placeholder_username">Usuario</string>
+    <string name="placeholder_email">Correo electrónico</string>
+    <string name="placeholder_url_pfp">URL de imagen</string>
+    <string name="placeholder_password">Contraseña</string>
+    <string name="error_invalid_email">Correo electrónico no válido</string>
+    <string name="error_invalid_url">URL no válida</string>
+    <string name="error_password_mismatch">Las contraseñas no coinciden</string>
 </resources>
