@@ -42,6 +42,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -53,6 +54,7 @@ import com.example.synhub.groups.viewmodel.MemberViewModel
 import com.example.synhub.shared.components.TopBar
 import com.example.synhub.tasks.views.getDividerColor
 import androidx.lifecycle.viewmodel.compose.viewModel
+import nrg.inc.synhub.R
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -328,7 +330,7 @@ fun NoMembers(nav: NavHostController, code:String){
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Tu grupo no tiene miembros, invita anuevos integrantes a traves de este código",
+                    text = stringResource(id = R.string.no_members),
                     fontSize = 20.sp,
                     color = Color(0xFFFFFFFF),
                     textAlign = TextAlign.Center

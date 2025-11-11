@@ -39,6 +39,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -48,6 +49,7 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.synhub.requests.viewModel.RequestViewModel
 import com.example.synhub.shared.components.TopBar
+import nrg.inc.synhub.R
 
 
 @Composable
@@ -242,7 +244,7 @@ fun NoRequests() {
                 verticalArrangement = Arrangement.spacedBy(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text("No hay solicitudes a validar",
+                Text(stringResource(id = R.string.no_requests),
                     fontSize = 20.sp,
                     color = Color.White,
                     modifier = Modifier.fillMaxWidth(),

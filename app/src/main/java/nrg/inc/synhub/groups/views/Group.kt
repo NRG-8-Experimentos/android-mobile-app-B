@@ -52,10 +52,12 @@ import com.example.synhub.groups.application.dto.GroupMember
 import com.example.synhub.shared.components.TopBar
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import nrg.inc.synhub.R
 
 @Composable
 fun Group(nav: NavHostController) {
@@ -332,7 +334,7 @@ fun NoGroup(nav: NavHostController){
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "No Haz Creado tu grupo todavia",
+                    text = stringResource(id = R.string.no_group),
                     fontSize = 25.sp,
                     color = Color(0xFFFFFFFF)
                 )

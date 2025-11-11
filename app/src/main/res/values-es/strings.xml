@@ -28,4 +28,14 @@
     <string name="error_invalid_email">Correo electrónico no válido</string>
     <string name="error_invalid_url">URL no válida</string>
     <string name="error_password_mismatch">Las contraseñas no coinciden</string>
+    <string name="main_title">Principal</string>
+    <string name="members_title">Integrantes</string>
+    <string name="tasks_title">Tareas</string>
+    <string name="requests_validations_title">Solicitudes y Validaciones</string>
+    <string name="join_requests_title">Solicitudes de Unión</string>
+    <string name="no_members">No hay integrantes en el grupo</string>
+    <string name="no_tasks">No hay tareas programadas</string>
+    <string name="no_requests">No hay solicitudes pendientes</string>
+    <string name="no_invitations">No hay invitaciones recibidas</string>
+    <string name="no_group">No hay un grupo creado</string>
 </resources>

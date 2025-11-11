@@ -27,4 +27,14 @@
     <string name="error_invalid_email">Invalid email address</string>
     <string name="error_invalid_url">Invalid URL</string>
     <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="main_title">Main</string>
+    <string name="members_title">Members</string>
+    <string name="tasks_title">Tasks</string>
+    <string name="requests_validations_title">Requests and Validations</string>
+    <string name="join_requests_title">Join Requests</string>
+    <string name="no_members">No members on the team</string>
+    <string name="no_tasks">No tasks programed</string>
+    <string name="no_requests">No requests pending</string>
+    <string name="no_invitations">No invitations recieved</string>
+    <string name="no_group">No group created</string>
 </resources>

@@ -151,8 +151,6 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
             textAlign = TextAlign.Center
         )
 
-        LanguageSwitchingButtons()
-
         OutlinedTextField(
             value = txtUser,
             singleLine = true,

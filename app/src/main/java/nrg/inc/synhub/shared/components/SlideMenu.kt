@@ -33,6 +33,7 @@ import com.example.synhub.shared.icons.reportsSVG
 import com.example.synhub.shared.icons.requestSVG
 import com.example.synhub.shared.icons.tasksSVG
 import com.example.synhub.shared.model.client.RetrofitClient
+import nrg.inc.synhub.shared.components.LanguageSwitchingButtons
 
 @Composable
 fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: String) {
@@ -203,6 +204,12 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
             Spacer(modifier = Modifier.height(gap))
         }
 
+        HorizontalDivider()
+        Spacer(modifier = Modifier.height(gap))
+
+        LanguageSwitchingButtons()
+
+        Spacer(modifier = Modifier.height(gap))
         HorizontalDivider()
         Spacer(modifier = Modifier.height(gap))
 

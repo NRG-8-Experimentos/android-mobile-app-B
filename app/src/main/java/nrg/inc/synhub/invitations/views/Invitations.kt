@@ -39,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,6 +48,7 @@ import com.example.synhub.invitations.viewmodel.InvitationViewModel
 import com.example.synhub.shared.components.TopBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import nrg.inc.synhub.R
 
 @Composable
 fun Invitations(nav: NavHostController) {
@@ -248,7 +250,7 @@ fun NoInvitations(){
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "No hay invitationes pendientes",
+                    text = stringResource(id = R.string.no_invitations),
                     fontSize = 20.sp,
                     color = Color(0xFFFFFFFF)
                 )
