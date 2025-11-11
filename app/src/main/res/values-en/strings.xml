@@ -107,4 +107,7 @@
     <string name="member_details_confirm_delete_member_text">Are you sure you want to remove %1$s %2$s (%3$s) from the group?</string>
     <string name="group_copy_code_description">Copy group code</string>
     <string name="create_group">Create Group</string>
+    <string name="group_name">Group name</string>
+    <string name="description">Description</string>
+    <string name="group_description">Group Description</string>
 </resources>

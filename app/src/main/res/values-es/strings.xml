@@ -107,4 +107,7 @@
     <string name="member_details_confirm_delete_member_text">¿Estás seguro de que deseas eliminar a %1$s %2$s (%3$s) fdel grupo?</string>
     <string name="group_copy_code_description">Copiar codigo de grupo</string>
     <string name="create_group">Crear Grupo</string>
+    <string name="group_name">Nombre de grupo</string>
+    <string name="description">Descripción</string>
+    <string name="group_description">Descripción del grupo</string>
 </resources>
