@@ -110,4 +110,26 @@
     <string name="group_name">Group name</string>
     <string name="description">Description</string>
     <string name="group_description">Group Description</string>
+    <string name="in_progress">In Progress</string>
+    <string name="completed">Completed</string>
+    <string name="total">Total</string>
+    <string name="rescheduled">Rescheduled</string>
+    <string name="completed_tasks_amount">Completed tasks amount</string>
+    <string name="no_time_registered">No time registered</string>
+    <string name="lc_tasks">tasks</string>
+    <string name="loading_tasks">Loading tasks...</string>
+    <string name="no_available">No available</string>
+    <string name="general_summary">General summary</string>
+    <string name="total_tasks">Total tasks</string>
+    <string name="reprogramed_tasks">Reprogramed tasks</string>
+    <string name="tasks_distribution">Tasks distribution</string>
+    <string name="analytics_completion_time_section_title">Average Completion Time</string>
+    <string name="analytics_avg_completion_time_label">Average completed tasks</string>
+    <string name="analytics_avg_time_per_member_label">Average per member (only tasks completed)</string>
+    <string name="loading_time_member">Loading times per member</string>
+    <string name="total_reprogramed">Total reprogramed</string>
+    <string name="members_who_reprogram">Members who reprogramed tasks</string>
+    <string name="no_members_reprogramed">No members reprogramed tasks</string>
+    <string name="loading_metrics">Loading metrics</string>
+    <string name="please_wait">Please wait</string>
 </resources>

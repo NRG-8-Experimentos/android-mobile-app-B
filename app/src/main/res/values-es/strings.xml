@@ -110,4 +110,26 @@
     <string name="group_name">Nombre de grupo</string>
     <string name="description">Descripción</string>
     <string name="group_description">Descripción del grupo</string>
+    <string name="completed">Completadas</string>
+    <string name="total">Total</string>
+    <string name="in_progress">En progreso</string>
+    <string name="rescheduled">Reprogramadas</string>
+    <string name="completed_tasks_amount">Cantidad de tareas completadas</string>
+    <string name="no_time_registered">Sin tiempo registrado</string>
+    <string name="lc_tasks">tareas</string>
+    <string name="loading_tasks">Cargando tareas...</string>
+    <string name="no_available">No disponible</string>
+    <string name="general_summary">Resumen general</string>
+    <string name="total_tasks">Total de tareas</string>
+    <string name="reprogramed_tasks">Tareas reprogramadas</string>
+    <string name="tasks_distribution">Distribución de Tareas</string>
+    <string name="analytics_completion_time_section_title">Tiempo promedio de finalización</string>
+    <string name="analytics_avg_completion_time_label">Promedio tareas completadas</string>
+    <string name="analytics_avg_time_per_member_label">Promedio por miembro (solo tareas completadas)</string>
+    <string name="loading_time_member">Cargando tiempos por miembro</string>
+    <string name="total_reprogramed">Total reprogramadas</string>
+    <string name="members_who_reprogram">Miembros que reprogramaron tareas</string>
+    <string name="no_members_reprogramed">Ningún miembro ha reprogramado tareas</string>
+    <string name="loading_metrics">Cargando métricas</string>
+    <string name="please_wait">Por favor espera</string>
 </resources>
