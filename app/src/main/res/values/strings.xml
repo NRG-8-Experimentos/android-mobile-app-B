@@ -79,4 +79,16 @@
     <string name="due_date_placeholder">Select date</string>
     <string name="select_date_cd">Select date</string>
     <string name="save">Save</string>
+    <string name="create_task_title">Crear tarea</string>
+    <string name="label_task_title">Título de la tarea</string>
+    <string name="placeholder_title">Título</string>
+    <string name="label_description">Descripción de la tarea</string>
+    <string name="placeholder_description">Descripción</string>
+    <string name="label_member">Integrante</string>
+    <string name="placeholder_member">Seleccionar integrante</string>
+    <string name="label_due_date">Fecha de entrega</string>
+    <string name="placeholder_due_date">Seleccionar fecha</string>
+    <string name="cd_select_date">Seleccionar fecha</string>
+    <string name="date_picker_ok">OK</string>
+    <string name="date_picker_cancel">Cancelar</string>
 </resources>
