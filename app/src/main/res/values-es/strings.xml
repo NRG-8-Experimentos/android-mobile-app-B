@@ -38,4 +38,7 @@
     <string name="no_requests">No hay solicitudes pendientes</string>
     <string name="no_invitations">No hay invitaciones recibidas</string>
     <string name="no_group">No hay un grupo creado</string>
+    <string name="group_title">Grupo</string>
+    <string name="statistics_title">Reportes y Estadísticas</string>
+    <string name="log_out">Cerrar Sesion</string>
 </resources>

@@ -37,4 +37,7 @@
     <string name="no_requests">No requests pending</string>
     <string name="no_invitations">No invitations recieved</string>
     <string name="no_group">No group created</string>
+    <string name="group_title">Group</string>
+    <string name="statistics_title">Reports and Statistics</string>
+    <string name="log_out">Log Out</string>
 </resources>
