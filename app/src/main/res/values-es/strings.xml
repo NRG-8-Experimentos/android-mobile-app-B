@@ -102,4 +102,7 @@
     <string name="reject">Rechazar</string>
     <string name="members_top_bar_title">Miembros del grupo</string>
     <string name="members_no_next_task">Sin próxima tarea</string>
+    <string name="expired_tasks">Treas Expiradas</string>
+    <string name="member_details_no_scheduled_tasks_for_member">No hay tareas programadas para</string>
+    <string name="member_details_confirm_delete_member_text">¿Estás seguro de que deseas eliminar a %1$s %2$s (%3$s) fdel grupo?</string>
 </resources>

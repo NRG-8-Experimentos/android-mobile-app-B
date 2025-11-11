@@ -387,7 +387,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                         }
                     }
                     item{
-                        Text(stringResource(id = R.string.pending_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.expired_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
                     }
                     if(expiredTasks.isEmpty()){
                         item {
