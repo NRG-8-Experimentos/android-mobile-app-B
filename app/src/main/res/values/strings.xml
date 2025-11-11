@@ -79,16 +79,25 @@
     <string name="due_date_placeholder">Select date</string>
     <string name="select_date_cd">Select date</string>
     <string name="save">Save</string>
-    <string name="create_task_title">Crear tarea</string>
-    <string name="label_task_title">Título de la tarea</string>
-    <string name="placeholder_title">Título</string>
-    <string name="label_description">Descripción de la tarea</string>
-    <string name="placeholder_description">Descripción</string>
-    <string name="label_member">Integrante</string>
-    <string name="placeholder_member">Seleccionar integrante</string>
-    <string name="label_due_date">Fecha de entrega</string>
-    <string name="placeholder_due_date">Seleccionar fecha</string>
-    <string name="cd_select_date">Seleccionar fecha</string>
+    <string name="create_task_title">Create task</string>
+    <string name="label_task_title">Task title</string>
+    <string name="placeholder_title">Title</string>
+    <string name="label_description">Task description</string>
+    <string name="placeholder_description">Description</string>
+    <string name="label_member">Member</string>
+    <string name="placeholder_member">Select member</string>
+    <string name="label_due_date">Due date</string>
+    <string name="placeholder_due_date">Select date</string>
+    <string name="cd_select_date">Select date</string>
     <string name="date_picker_ok">OK</string>
-    <string name="date_picker_cancel">Cancelar</string>
+    <string name="date_picker_cancel">Cancel</string>
+    <string name="validation_top_bar_title">Task validation</string>
+    <string name="validation_comment_label">Comment</string>
+    <string name="validation_time_development">Development time</string>
+    <string name="validation_time_development_assigned">Assigned development time</string>
+    <string name="reschedule">Reschedule</string>
+    <string name="mark_completed">Mark as completed</string>
+    <string name="deny">Deny</string>
+
+
 </resources>
