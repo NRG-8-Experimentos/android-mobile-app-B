@@ -65,4 +65,10 @@
     <string name="cancel">Cancelar</string>
     <string name="confirm_delete">Confirmar eliminación</string>
     <string name="confirm_task_delete">¿Estás seguro de que deseas borrar esta tarea?</string>
+    <string name="task_details">Detalles de la tarea</string>
+    <string name="label_title">Título</string>
+    <string name="label_assigned_to">Asignado a</string>
+    <string name="label_assigned_on">Asignado el</string>
+    <string name="label_due_on">Vence el</string>
+    <string name="task_not_found">Tarea no encontrada</string>
 </resources>
