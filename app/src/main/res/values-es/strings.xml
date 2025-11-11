@@ -71,4 +71,14 @@
     <string name="label_assigned_on">Asignado el</string>
     <string name="label_due_on">Vence el</string>
     <string name="task_not_found">Tarea no encontrada</string>
+    <string name="edit_task_title">Editar tarea</string>
+    <string name="title_label">Título de la tarea</string>
+    <string name="description_label">Descripción de la tarea</string>
+    <string name="member_label">Integrante</string>
+    <string name="member_placeholder">Seleccionar integrante</string>
+    <string name="due_date_label">Fecha de entrega</string>
+    <string name="due_date_placeholder">Seleccionar fecha</string>
+    <string name="select_date_cd">Seleccionar fecha</string>
+    <string name="save">Guardar</string>
+    <string name="cancel_button">Cancelar</string>
 </resources>

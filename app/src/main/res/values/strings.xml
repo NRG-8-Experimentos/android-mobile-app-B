@@ -70,4 +70,13 @@
     <string name="label_assigned_on">Assigned on</string>
     <string name="label_due_on">Due on</string>
     <string name="task_not_found">Task not found</string>
+    <string name="edit_task_title">Edit task</string>
+    <string name="title_label">Task title</string>
+    <string name="description_label">Task description</string>
+    <string name="member_label">Member</string>
+    <string name="member_placeholder">Select member</string>
+    <string name="due_date_label">Due date</string>
+    <string name="due_date_placeholder">Select date</string>
+    <string name="select_date_cd">Select date</string>
+    <string name="save">Save</string>
 </resources>
