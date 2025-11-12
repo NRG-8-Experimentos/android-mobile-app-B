@@ -38,6 +38,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,6 +58,7 @@ import com.example.synhub.shared.viewmodel.HomeViewModel
 import com.example.synhub.tasks.viewmodel.TaskViewModel
 import com.example.synhub.tasks.views.NoTasks
 import kotlinx.coroutines.launch
+import nrg.inc.synhub.R
 
 @Composable
 fun Home(nav: NavHostController, homeViewModel: HomeViewModel = HomeViewModel()) {
@@ -96,7 +98,7 @@ fun Home(nav: NavHostController, homeViewModel: HomeViewModel = HomeViewModel())
                             }
                         }
                     },
-                    "Principal",
+                    stringResource(id = R.string.main_title),
                     Icons.Default.Menu
                 )
             }
@@ -143,7 +145,7 @@ fun HomeScreen(modifier: Modifier, nav: NavHostController) {
                 item{
                     Column{
                             Text(
-                                text = "Integrantes:",
+                                text = stringResource(id = R.string.members_title) + ":",
                                 fontSize = 20.sp,
                                 color = Color(0xFF1A4E85),
                                 fontWeight = FontWeight.Bold
@@ -235,7 +237,7 @@ fun HomeScreen(modifier: Modifier, nav: NavHostController) {
                 item {
                     Column {
                         Text(
-                            text = "Tareas:",
+                            text = stringResource(id = R.string.tasks_title) + ":",
                             fontSize = 20.sp,
                             color = Color(0xFF1A4E85),
                             fontWeight = FontWeight.Bold
@@ -323,7 +325,7 @@ fun HomeScreen(modifier: Modifier, nav: NavHostController) {
                 item {
                     Column{
                         Text(
-                            text = "Solicitudes y Validaciones:",
+                            text = stringResource(id = R.string.requests_validations_title) + ":",
                             fontSize = 20.sp,
                             color = Color(0xFF1A4E85),
                             fontWeight = FontWeight.Bold
@@ -408,7 +410,7 @@ fun HomeScreen(modifier: Modifier, nav: NavHostController) {
                 item {
                     Column{
                         Text(
-                            text = "Solicitudes de unión:",
+                            text = stringResource(id = R.string.join_requests_title) + ":",
                             fontSize = 20.sp,
                             color = Color(0xFF1A4E85),
                             fontWeight = FontWeight.Bold

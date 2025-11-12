@@ -14,7 +14,6 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.DrawerValue
@@ -35,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -53,6 +53,7 @@ import com.example.synhub.shared.model.client.RetrofitClient
 import com.example.synhub.tasks.application.dto.TaskResponse
 import kotlinx.coroutines.launch
 import com.example.synhub.analytics.model.response.AnalyticsWebService
+import nrg.inc.synhub.R
 
 // Colores adaptados de Tasks
 private val BluePrimary = Color(0xFF1A4E85)
@@ -68,16 +69,23 @@ private val AccentPending = Color(0xFFFF832A)
 private val CardBorder = Color(0xFFE0E0E0)
 private val CardLight = Color(0xFFFFFFFF)
 
-private val friendlyNames = mapOf(
-    "IN_PROGRESS" to "En progreso",
-    "COMPLETED" to "Completadas",
-    "total" to "Total",
-    "rescheduled" to "Reprogramadas",
-    "completedTasks" to "Tareas Completadas",
-    "taskCount" to "Cantidad de Tareas completadas"
-)
+@Composable
+fun FriendlyNames(): Map<String, String> {
+    return mapOf(
+        "IN_PROGRESS" to stringResource(id = R.string.in_progress),
+        "COMPLETED" to stringResource(id = R.string.completed),
+        "total" to stringResource(id = R.string.total),
+        "rescheduled" to stringResource(id = R.string.reschedule),
+        "completedTasks" to stringResource(id = R.string.completed_tasks),
+        "taskCount" to stringResource(id = R.string.completed_tasks_amount)
+    )
+}
 
-fun getFriendlyName(key: String): String = friendlyNames[key] ?: key.replaceFirstChar { it.uppercase() }
+@Composable
+fun getFriendlyName(key: String): String {
+    val friendlyNames = FriendlyNames()
+    return friendlyNames[key] ?: key.replaceFirstChar { it.uppercase() }
+}
 
 fun formatDetailValue(value: Any?): String =
     when (value) {
@@ -86,8 +94,9 @@ fun formatDetailValue(value: Any?): String =
         else -> value?.toString() ?: ""
     }
 
+@Composable
 fun formatDuration(ms: Long?): String {
-    if (ms == null || ms <= 0) return "Sin tiempo registrado"
+    if (ms == null || ms <= 0) return stringResource(id = R.string.no_time_registered)
     val seconds = ms / 1000
     val days = seconds / (24 * 3600)
     val hours = (seconds % (24 * 3600)) / 3600
@@ -102,8 +111,9 @@ fun formatDuration(ms: Long?): String {
     return parts.joinToString(" ")
 }
 
+@Composable
 fun formatDaysToDuration(days: Double?): String {
-    if (days == null || days <= 0.0) return "Sin tiempo registrado"
+    if (days == null || days <= 0.0) return stringResource(id = R.string.no_time_registered)
     val ms = (days * 24 * 60 * 60 * 1000).toLong()
     return formatDuration(ms)
 }
@@ -209,7 +219,7 @@ fun EnhancedBarChart(distribution: Map<String, Any>?) {
                 }
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = "$count tareas",
+                    text = "$count " + stringResource(id = R.string.lc_tasks),
                     color = AccentBlue,
                     fontWeight = FontWeight.Bold,
                     fontSize = 15.sp
@@ -235,12 +245,12 @@ fun TaskTimesList(memberId: Long?) {
     }
 
     if (loading) {
-        Text("Cargando tareas...", color = Color.Gray, fontSize = 14.sp)
+        Text(stringResource(id = R.string.loading_tasks), color = Color.Gray, fontSize = 14.sp)
         return
     }
 
     if (tasks.isEmpty()) {
-        Text("No disponible", color = Color.Gray, fontSize = 14.sp)
+        Text(stringResource(id = R.string.no_available), color = Color.Gray, fontSize = 14.sp)
         return
     }
 
@@ -362,14 +372,14 @@ fun AnalyticsOverviewSection(analyticsState: AnalyticsState) {
                 .background(CardLight, RoundedCornerShape(12.dp))
                 .padding(16.dp)
         ) {
-            SectionTitle("Resumen General", icon = {
+            SectionTitle(stringResource(id = R.string.general_summary), icon = {
                 Icon(Icons.Filled.Info, contentDescription = null, tint = BluePrimary)
             })
-            MetricRow("Tareas completadas", completed, highlight = true)
-            MetricRow("Tareas en progreso", inProgress)
-            MetricRow("Total de tareas", total)
+            MetricRow(stringResource(id = R.string.completed_tasks), completed, highlight = true)
+            MetricRow(stringResource(id = R.string.pending_tasks), inProgress)
+            MetricRow(stringResource(id = R.string.total_tasks), total)
             Spacer(modifier = Modifier.height(8.dp))
-            MetricRow("Tareas reprogramadas", rescheduled)
+            MetricRow(stringResource(id = R.string.reprogramed_tasks), rescheduled)
         }
     }
 }
@@ -394,11 +404,11 @@ fun AnalyticsDistributionSection(
                 .background(CardLight, RoundedCornerShape(12.dp))
                 .padding(16.dp)
         ) {
-            SectionTitle("Distribución de Tareas", icon = {
+            SectionTitle(stringResource(id = R.string.tasks_distribution), icon = {
                 Icon(Icons.Filled.AccountCircle, contentDescription = null, tint = BluePrimary)
             })
             if (dist.isNullOrEmpty()) {
-                Text("No disponible", color = Color.Gray)
+                Text(stringResource(id = R.string.no_available), color = Color.Gray)
             } else {
                 val parsed = dist.mapNotNull { (_, v) ->
                     if (v is Map<*, *>) {
@@ -457,7 +467,7 @@ fun AnalyticsDistributionSection(
                             }
                             Spacer(modifier = Modifier.width(12.dp))
                             Text(
-                                text = "$count tareas",
+                                text = "$count "+ stringResource(id = R.string.lc_tasks),
                                 color = AccentBlue,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 15.sp
@@ -516,17 +526,17 @@ fun AnalyticsCompletionTimeSection(
                 .background(CardLight, RoundedCornerShape(12.dp))
                 .padding(16.dp)
         ) {
-            SectionTitle("Tiempo promedio de finalización", icon = {
+            SectionTitle(stringResource(id = R.string.analytics_completion_time_section_title) + ":", icon = {
                 Icon(Icons.Filled.DateRange, contentDescription = null, tint = BluePrimary)
             })
-            if (formatted.isNotBlank() && formatted != "Sin tiempo registrado") {
-                MetricRow("Promedio tareas completadas", formatted, highlight = true)
+            if (formatted.isNotBlank() && formatted != stringResource(id = R.string.no_time_registered)) {
+                MetricRow(stringResource(id = R.string.analytics_avg_completion_time_label) + ":", formatted, highlight = true)
             }
             Spacer(modifier = Modifier.height(12.dp))
-            Text("Promedio por miembro (solo tareas completadas):", color = BluePrimary, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Text(stringResource(id = R.string.analytics_avg_time_per_member_label) + ":", color = BluePrimary, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             Spacer(modifier = Modifier.height(4.dp))
             if (loading && members.isNotEmpty()) {
-                Text("Cargando tiempos por miembro...", color = Color.Gray, fontSize = 14.sp)
+                Text(stringResource(id = R.string.loading_time_member) + "...", color = Color.Gray, fontSize = 14.sp)
             } else {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     members.forEach { member ->
@@ -594,16 +604,16 @@ fun AnalyticsRescheduledSection(
                 .background(CardLight, RoundedCornerShape(12.dp))
                 .padding(16.dp)
         ) {
-            SectionTitle("Tareas reprogramadas", icon = {
+            SectionTitle(stringResource(id = R.string.reprogramed_tasks), icon = {
                 Icon(Icons.Filled.Build, contentDescription = null, tint = BluePrimary)
             })
-            MetricRow("Total reprogramadas", totalRescheduled.toString(), highlight = true)
-            MetricRow("Total tareas", total)
+            MetricRow(stringResource(id = R.string.total_reprogramed) + ":", totalRescheduled.toString(), highlight = true)
+            MetricRow(stringResource(id = R.string.total_tasks) + ":", total)
             Spacer(modifier = Modifier.height(12.dp))
-            Text("Miembros que reprogramaron tareas:", color = BluePrimary, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Text(stringResource(id = R.string.members_who_reprogram) + ":", color = BluePrimary, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             Spacer(modifier = Modifier.height(4.dp))
             if (rescheduledMemberIds.isEmpty()) {
-                Text("Ningún miembro ha reprogramado tareas.", color = Color.Gray, fontSize = 14.sp)
+                Text(stringResource(id = R.string.no_members_reprogramed), color = Color.Gray, fontSize = 14.sp)
             } else {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     members.filter { it.id in rescheduledMemberIds }.forEachIndexed { idx, member ->
@@ -701,7 +711,7 @@ fun AnalyticsAndReports(
                     function = {
                         nav.popBackStack()
                     },
-                    "Analítica y Reportes",
+                    stringResource(id = R.string.statistics_title),
                     Icons.AutoMirrored.Filled.ArrowBack
                 )
             },
@@ -714,7 +724,7 @@ fun AnalyticsAndReports(
                             .padding(16.dp),
                         verticalArrangement = Arrangement.spacedBy(18.dp)
                     ) {
-                        item { MetricCard(title = "Cargando métricas...", content = "Por favor espera...") }
+                        item { MetricCard(title = stringResource(id = R.string.loading_metrics) + "...", content =  stringResource(id = R.string.please_wait) + "...") }
                     }
                 } else if (!haveGroup) {
                     LazyColumn(
@@ -724,7 +734,7 @@ fun AnalyticsAndReports(
                             .padding(16.dp),
                         verticalArrangement = Arrangement.spacedBy(18.dp)
                     ) {
-                        item { MetricCard(title = "Sin grupo", content = "No tienes grupo asignado.") }
+                        item { MetricCard(title = stringResource(id = R.string.no_group), content = stringResource(id = R.string.no_group)) }
                     }
                 } else if (!haveMembers) {
                     LazyColumn(
@@ -734,7 +744,7 @@ fun AnalyticsAndReports(
                             .padding(16.dp),
                         verticalArrangement = Arrangement.spacedBy(18.dp)
                     ) {
-                        item { MetricCard(title = "Sin miembros", content = "Tu grupo no tiene miembros.") }
+                        item { MetricCard(title = stringResource(id = R.string.no_members), content = stringResource(id = R.string.no_members)) }
                     }
                 } else {
                     LazyColumn(

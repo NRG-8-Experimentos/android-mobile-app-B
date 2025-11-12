@@ -1,5 +1,6 @@
 package com.example.synhub.shared.components
 
+import nrg.inc.synhub.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -33,6 +35,7 @@ import com.example.synhub.shared.icons.reportsSVG
 import com.example.synhub.shared.icons.requestSVG
 import com.example.synhub.shared.icons.tasksSVG
 import com.example.synhub.shared.model.client.RetrofitClient
+import nrg.inc.synhub.shared.components.LanguageSwitchingButtons
 
 @Composable
 fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: String) {
@@ -92,7 +95,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                     )
                 },
                 label = {
-                    Text(text = "Grupo",
+                    Text(text = stringResource(id = R.string.group_title),
                         fontSize = 17.sp,
                         modifier = Modifier.padding(16.dp),
                         color = Color.White)
@@ -111,7 +114,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                     )
                 },
                 label = {
-                    Text(text = "Solicitudes de unión",
+                    Text(text = stringResource(id = R.string.join_requests_title),
                         fontSize = 17.sp,
                         modifier = Modifier.padding(16.dp),
                         color = Color.White)
@@ -130,7 +133,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                     )
                 },
                 label = {
-                    Text(text = "Integrantes",
+                    Text(text = stringResource(id = R.string.members_title),
                         fontSize = 17.sp,
                         modifier = Modifier.padding(16.dp),
                         color = Color.White)
@@ -149,7 +152,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                     )
                 },
                 label = {
-                    Text(text = "Tareas",
+                    Text(text = stringResource(id = R.string.tasks_title),
                         fontSize = 17.sp,
                         modifier = Modifier.padding(16.dp),
                         color = Color.White)
@@ -168,7 +171,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                     )
                 },
                 label = {
-                    Text(text = "Reportes y Estadísticas",
+                    Text(text = stringResource(id = R.string.statistics_title),
                         fontSize = 17.sp,
                         modifier = Modifier.padding(16.dp),
                         color = Color.White)
@@ -190,7 +193,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                     )
                 },
                 label = {
-                    Text(text = "Solicitudes y Validaciones",
+                    Text(text = stringResource(id = R.string.requests_validations_title),
                         fontSize = 17.sp,
                         modifier = Modifier.padding(16.dp),
                         color = Color.White)
@@ -206,6 +209,12 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
         HorizontalDivider()
         Spacer(modifier = Modifier.height(gap))
 
+        LanguageSwitchingButtons()
+
+        Spacer(modifier = Modifier.height(gap))
+        HorizontalDivider()
+        Spacer(modifier = Modifier.height(gap))
+
         Column (
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ){
@@ -218,7 +227,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                     )
                 },
                 label = {
-                    Text(text = "Cerrar Sesión",
+                    Text(text = stringResource(id = R.string.log_out),
                         fontSize = 17.sp,
                         modifier = Modifier.padding(16.dp),
                         color = Color.White)

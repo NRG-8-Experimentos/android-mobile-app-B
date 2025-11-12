@@ -39,7 +39,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.res.stringResource
 import com.example.synhub.tasks.application.dto.TaskResponse
+import nrg.inc.synhub.R
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -60,7 +62,7 @@ fun TaskDetail(nav: NavHostController, taskId: String?) {
                 function = {
                     nav.popBackStack()
                 },
-                "Detalles de la tarea",
+                stringResource(id = R.string.task_details),
                 Icons.AutoMirrored.Filled.ArrowBack
             )
         }
@@ -95,7 +97,7 @@ fun TaskDetailScreen(modifier: Modifier, nav: NavHostController, task: TaskRespo
             ) {
                 Column {
                     Text(
-                        text = "Título:",
+                        text = stringResource(id = R.string.label_title) + ":",
                         style = TextStyle(
                             fontSize = 20.sp,
                             color = Color.Black,
@@ -122,7 +124,7 @@ fun TaskDetailScreen(modifier: Modifier, nav: NavHostController, task: TaskRespo
             ) {
                 Column {
                     Text(
-                        text = "Detalles de la tarea:",
+                        text = stringResource(id = R.string.task_details) + ":",
                         style = TextStyle(
                             fontSize = 20.sp,
                             color = Color.Black,
@@ -150,7 +152,7 @@ fun TaskDetailScreen(modifier: Modifier, nav: NavHostController, task: TaskRespo
             ) {
                 Column {
                     Text(
-                        text = "Asignado a:",
+                        text = stringResource(id = R.string.label_assigned_to) + ":",
                         style = TextStyle(
                             fontSize = 20.sp,
                             color = Color.Black,
@@ -204,7 +206,7 @@ fun TaskDetailScreen(modifier: Modifier, nav: NavHostController, task: TaskRespo
             ) {
                 Column {
                     Text(
-                        text = "Asignado el:",
+                        text = stringResource(id = R.string.label_assigned_on) + ":",
                         style = TextStyle(
                             fontSize = 20.sp,
                             color = Color.Black,
@@ -239,7 +241,7 @@ fun TaskDetailScreen(modifier: Modifier, nav: NavHostController, task: TaskRespo
             ) {
                 Column {
                     Text(
-                        text = "Vence el:",
+                        text = stringResource(id = R.string.label_due_on) + ":",
                         style = TextStyle(
                             fontSize = 20.sp,
                             color = Color.Black,
@@ -282,7 +284,7 @@ fun TaskDetailScreen(modifier: Modifier, nav: NavHostController, task: TaskRespo
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "Tarea no encontrada",
+                    text = stringResource(id = R.string.task_not_found),
                     style = TextStyle(
                         fontSize = 20.sp,
                         color = Color.Red

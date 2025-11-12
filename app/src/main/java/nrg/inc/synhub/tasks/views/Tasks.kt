@@ -49,6 +49,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -60,10 +61,9 @@ import com.example.synhub.shared.components.TopBar
 import com.example.synhub.shared.icons.editSVG
 import com.example.synhub.shared.icons.trashSVG
 import com.example.synhub.tasks.viewmodel.TaskViewModel
-import java.time.LocalDate
+import nrg.inc.synhub.R
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -77,7 +77,7 @@ fun Tasks(nav: NavHostController) {
                 function = {
                     nav.navigate("Home")
                 },
-                "Tareas",
+                stringResource(id = R.string.tasks_title),
                 Icons.AutoMirrored.Filled.ArrowBack,
                 actions = {
                     IconButton(onClick = { showHelpDialog = true }) {
@@ -88,7 +88,7 @@ fun Tasks(nav: NavHostController) {
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Info,
-                                contentDescription = "Ayuda",
+                                contentDescription = stringResource(id = R.string.help),
                                 tint = Color(0xFF2C2C2C),
                                 modifier = Modifier.size(24.dp)
                             )
@@ -102,39 +102,39 @@ fun Tasks(nav: NavHostController) {
         if (showHelpDialog) {
             AlertDialog(
                 onDismissRequest = { showHelpDialog = false },
-                title = { Text("Ayuda", color = Color(0xFF1A4E85), fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(id = R.string.help), color = Color(0xFF1A4E85), fontWeight = FontWeight.Bold) },
                 text = {
                     Column(modifier = Modifier.fillMaxWidth()) {
-                        Text("Aquí puedes ver todas las tareas asignadas a un miembro. Toca una tarea para ver los detalles, editar o eliminar la tarea.", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_1), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Dentro de cada tarea, podrás ver una barra de color que indica el tiempo restante para completarla.", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_2), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Los colores de la barra indican lo siguiente:", fontWeight = FontWeight.Bold)
+                        Text(stringResource(id = R.string.help_dialog_3), fontWeight = FontWeight.Bold)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFF4CAF50), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Verde: Tarea en progreso con un tiempo de progreso menor al 70%.", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_4), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFFFDD634), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Amarillo: Tarea en progreso con un tiempo de progreso mayor o igual al 70%.", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_5), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFFF44336), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Rojo: Tarea vencida", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_6), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFF4A90E2), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Azul: Tarea completada", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_7), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFFFF832A), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Naranja: Tareas pendientes de alguna validación o comentario", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_8), textAlign = TextAlign.Justify)
                     }
                 },
                 confirmButton = {
                     TextButton(onClick = { showHelpDialog = false }) {
-                        Text("Cerrar", color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.close), color = Color(0xFF1A4E85))
                     }
                 }
             )
@@ -164,7 +164,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
         tasksViewModel.fetchGroupTasks()
     }
 
-    Log.d("Tasks.kt", "Tareas obtenias: ${tasks.size}")
+    //Log.d("Tasks.kt", "Tareas obtenias: ${tasks.size}")
 
     Box(modifier = Modifier.fillMaxSize()){
         if(!haveTasks)
@@ -189,7 +189,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                     verticalArrangement = Arrangement.spacedBy(20.dp)
                 ){
                     item {
-                        Text("Tareas Pendientes", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.pending_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
                     }
                     if(inProgressTasks.isEmpty()){
                         item {
@@ -207,7 +207,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                 )
                             ){
                                 Text(
-                                    text = "No hay tareas pendientes",
+                                    text = stringResource(id = R.string.no_pending_tasks),
                                     fontSize = 15.sp,
                                     color = Color.White,
                                     modifier = Modifier.padding(16.dp),
@@ -355,7 +355,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                                 )
                                                 Spacer(modifier = Modifier.width(8.dp))
                                                 Text(
-                                                    text = "Editar", fontSize = 15.sp,
+                                                    text = stringResource(id = R.string.edit), fontSize = 15.sp,
                                                     color = Color.White, fontWeight = FontWeight.Bold
                                                 )
 
@@ -376,7 +376,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                                 )
                                                 Spacer(modifier = Modifier.width(8.dp))
                                                 Text(
-                                                    text = "Borrar", fontSize = 15.sp,
+                                                    text = stringResource(id = R.string.delete), fontSize = 15.sp,
                                                     color = Color.White, fontWeight = FontWeight.Bold
                                                 )
                                             }
@@ -387,7 +387,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                         }
                     }
                     item{
-                        Text("Tareas Vencidas", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.expired_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
                     }
                     if(expiredTasks.isEmpty()){
                         item {
@@ -405,7 +405,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                 )
                             ){
                                 Text(
-                                    text = "No hay tareas vencidas",
+                                    text = stringResource(id = R.string.no_expired_tasks),
                                     fontSize = 15.sp,
                                     color = Color.White,
                                     modifier = Modifier.padding(16.dp),
@@ -536,7 +536,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                         }
                     }
                     item {
-                        Text("Tareas pendientes de validación", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.validation_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
                     }
                     if(onHoldTasks.isEmpty()){
                         item {
@@ -554,7 +554,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                 )
                             ){
                                 Text(
-                                    text = "No hay tareas pendientes de validación",
+                                    text = stringResource(id = R.string.no_validation_tasks),
                                     fontSize = 15.sp,
                                     color = Color.White,
                                     modifier = Modifier.padding(16.dp),
@@ -685,7 +685,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                         }
                     }
                     item {
-                        Text("Tareas marcadas como Completadas", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.mark_completed_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
                     }
                     if(completedTasks.isEmpty()){
                         item {
@@ -703,7 +703,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                 )
                             ){
                                 Text(
-                                    text = "No hay tareas marcadas como completadas",
+                                    text = stringResource(id = R.string.no_mark_completed_tasks),
                                     fontSize = 15.sp,
                                     color = Color.White,
                                     modifier = Modifier.padding(16.dp),
@@ -834,7 +834,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                         }
                     }
                     item {
-                        Text("Tareas Completadas", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.completed_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
                     }
                     if(doneTasks.isEmpty()){
                         item {
@@ -852,7 +852,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                 )
                             ){
                                 Text(
-                                    text = "No hay tareas completadas",
+                                    text = stringResource(id = R.string.no_completed_tasks),
                                     fontSize = 15.sp,
                                     color = Color.White,
                                     modifier = Modifier.padding(16.dp),
@@ -998,7 +998,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                             )
                                             Spacer(modifier = Modifier.width(8.dp))
                                             Text(
-                                                text = "Borrar", fontSize = 15.sp,
+                                                text = stringResource(id = R.string.delete), fontSize = 15.sp,
                                                 color = Color.White, fontWeight = FontWeight.Bold
                                             )
                                         }
@@ -1032,8 +1032,8 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
         if (showDeleteDialog && taskIdToDelete != null) {
             AlertDialog(
                 onDismissRequest = { showDeleteDialog = false },
-                title = { Text("Confirmar eliminación", fontWeight = FontWeight.Bold, ) },
-                text = { Text("¿Estás seguro de que deseas borrar esta tarea?") },
+                title = { Text(stringResource(id = R.string.confirm_delete), fontWeight = FontWeight.Bold, ) },
+                text = { Text(stringResource(id = R.string.confirm_task_delete)) },
                 confirmButton = {
                     TextButton(
                         colors = ButtonDefaults.buttonColors(Color(0xFFF44336)),
@@ -1042,7 +1042,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                         showDeleteDialog = false
                         taskIdToDelete = null
                     }) {
-                        Text("Borrar", color = Color.White)
+                        Text(stringResource(id = R.string.delete), color = Color.White)
                     }
                 },
                 dismissButton = {
@@ -1052,7 +1052,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                         showDeleteDialog = false
                         taskIdToDelete = null
                     }) {
-                        Text("Cancelar", color = Color.White)
+                        Text(stringResource(id = R.string.cancel), color = Color.White)
                     }
                 }
             )
@@ -1125,7 +1125,7 @@ fun NoTasks(){
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "No hay tareas programadas",
+                    text = stringResource(id = R.string.no_tasks),
                     fontSize = 20.sp,
                     color = Color(0xFFFFFFFF)
                 )

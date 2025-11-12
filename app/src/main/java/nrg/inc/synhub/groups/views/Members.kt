@@ -42,6 +42,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -53,6 +54,7 @@ import com.example.synhub.groups.viewmodel.MemberViewModel
 import com.example.synhub.shared.components.TopBar
 import com.example.synhub.tasks.views.getDividerColor
 import androidx.lifecycle.viewmodel.compose.viewModel
+import nrg.inc.synhub.R
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -69,7 +71,7 @@ fun Members(nav: NavHostController){
                 function = {
                     nav.navigate("Home")
                 },
-                "Miembros del grupo",
+                stringResource(id = R.string.members_top_bar_title),
                 Icons.AutoMirrored.Filled.ArrowBack,
                 actions = {
                     IconButton(onClick = { showHelpDialog = true }) {
@@ -80,7 +82,7 @@ fun Members(nav: NavHostController){
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Info,
-                                contentDescription = "Ayuda",
+                                contentDescription = stringResource(id = R.string.help),
                                 tint = Color(0xFF2C2C2C),
                                 modifier = Modifier.size(24.dp)
                             )
@@ -97,36 +99,36 @@ fun Members(nav: NavHostController){
                 title = { Text("Ayuda", color = Color(0xFF1A4E85), fontWeight = FontWeight.Bold) },
                 text = {
                     Column(modifier = Modifier.fillMaxWidth()) {
-                        Text("Aquí puedes ver todos los miembros del grupo, la tarea que aparece en como previsualización es la tarea más próxima a vencer que se le ha asignado.", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_1), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Dentro de cada tarea, podrás ver una barra de color que indica el tiempo restante para completarla.", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_2), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Los colores de la barra indican lo siguiente:", fontWeight = FontWeight.Bold)
+                        Text(stringResource(id = R.string.help_dialog_3), fontWeight = FontWeight.Bold)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFF4CAF50), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Verde: Tarea en progreso con un tiempo de progreso menor al 70%.", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_4), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFFFDD634), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Amarillo: Tarea en progreso con un tiempo de progreso mayor o igual al 70%.", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_5), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFFF44336), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Rojo: Tarea vencida", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_6), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFF4A90E2), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Azul: Tarea completada", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_7), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFFFF832A), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Naranja: Tareas pendientes de alguna validación o comentario", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_8), textAlign = TextAlign.Justify)
                     }
                 },
                 confirmButton = {
                     TextButton(onClick = { showHelpDialog = false }) {
-                        Text("Cerrar", color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.cancel), color = Color(0xFF1A4E85))
                     }
                 }
             )
@@ -163,7 +165,7 @@ fun MembersScreen(modifier: Modifier, nav: NavHostController,
                 NoMembers(nav, group?.code ?: "")
             }else{
                 Text(
-                    text = "Integrantes",
+                    text = stringResource(id = R.string.members_title),
                     fontSize = 25.sp,
                     color = Color(0xFF1A4E85),
                 )
@@ -245,7 +247,7 @@ fun MembersScreen(modifier: Modifier, nav: NavHostController,
                                         verticalArrangement = Arrangement.spacedBy(10.dp),
                                     ) {
                                         Text(
-                                            text = nextTask?.title ?: "Sin próxima tarea",
+                                            text = nextTask?.title ?: stringResource(id = R.string.members_no_next_task),
                                             fontSize = 15.sp,
                                             color = Color.White
                                         )
@@ -328,7 +330,7 @@ fun NoMembers(nav: NavHostController, code:String){
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Tu grupo no tiene miembros, invita anuevos integrantes a traves de este código",
+                    text = stringResource(id = R.string.no_members),
                     fontSize = 20.sp,
                     color = Color(0xFFFFFFFF),
                     textAlign = TextAlign.Center

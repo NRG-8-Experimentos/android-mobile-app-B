@@ -49,6 +49,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -64,6 +65,7 @@ import com.example.synhub.tasks.viewmodel.TaskViewModel
 import com.example.synhub.tasks.views.getDividerColor
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import nrg.inc.synhub.R
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -100,7 +102,7 @@ fun MemberDetails(nav: NavHostController, memberId: String?) {
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Info,
-                                contentDescription = "Ayuda",
+                                contentDescription = stringResource(id = R.string.help),
                                 tint = Color(0xFF2C2C2C),
                                 modifier = Modifier.size(24.dp)
                             )
@@ -114,39 +116,39 @@ fun MemberDetails(nav: NavHostController, memberId: String?) {
         if (showHelpDialog) {
             AlertDialog(
                 onDismissRequest = { showHelpDialog = false },
-                title = { Text("Ayuda", color = Color(0xFF1A4E85), fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(id = R.string.help), color = Color(0xFF1A4E85), fontWeight = FontWeight.Bold) },
                 text = {
                     Column(modifier = Modifier.fillMaxWidth()) {
-                        Text("Aquí puedes ver todas las tareas asignadas a un miembro. Toca una tarea para ver los detalles, editar o eliminar la tarea.", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_1), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Dentro de cada tarea, podrás ver una barra de color que indica el tiempo restante para completarla.", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_2), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Los colores de la barra indican lo siguiente:", fontWeight = FontWeight.Bold)
+                        Text(stringResource(id = R.string.help_dialog_3), fontWeight = FontWeight.Bold)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFF4CAF50), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Verde: Tarea en progreso con un tiempo de progreso menor al 70%.", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_4), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFFFDD634), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Amarillo: Tarea en progreso con un tiempo de progreso mayor o igual al 70%.", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_5), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFFF44336), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Rojo: Tarea vencida", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_6), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFF4A90E2), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Azul: Tarea completada", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_7), textAlign = TextAlign.Justify)
                         Spacer(modifier = Modifier.height(8.dp))
                         Box(modifier = Modifier.height(4.dp).fillMaxWidth().background(Color(0xFFFF832A), shape = RoundedCornerShape(4.dp)))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Naranja: Tareas pendientes de alguna validación o comentario", textAlign = TextAlign.Justify)
+                        Text(stringResource(id = R.string.help_dialog_8), textAlign = TextAlign.Justify)
                     }
                 },
                 confirmButton = {
                     TextButton(onClick = { showHelpDialog = false }) {
-                        Text("Cerrar", color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.close), color = Color(0xFF1A4E85))
                     }
                 }
             )
@@ -190,7 +192,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                 .padding(top = 120.dp)
                 .padding(horizontal = 20.dp)
         ) {
-            Text("Tareas:", fontSize = 25.sp, color = Color(0xFF1A4E85), fontWeight = FontWeight.Bold)
+            Text(stringResource(id = R.string.tasks_title) + ":", fontSize = 25.sp, color = Color(0xFF1A4E85), fontWeight = FontWeight.Bold)
             HorizontalDivider(color = Color(0xFF1A4E85), thickness = 2.dp)
             Spacer(modifier = Modifier.height(20.dp))
             if(tasks.isNotEmpty()){
@@ -199,7 +201,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                     verticalArrangement = Arrangement.spacedBy(15.dp)
                 ) {
                     item {
-                        Text("Tareas Pendientes", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.pending_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
                     }
                     if(inProgressTasks.isEmpty()){
                         item {
@@ -217,7 +219,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                 )
                             ){
                                 Text(
-                                    text = "No hay tareas pendientes",
+                                    text = stringResource(id = R.string.no_pending_tasks),
                                     fontSize = 15.sp,
                                     color = Color.White,
                                     modifier = Modifier.padding(16.dp),
@@ -338,7 +340,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                                 )
                                                 Spacer(modifier = Modifier.width(8.dp))
                                                 Text(
-                                                    text = "Editar", fontSize = 15.sp,
+                                                    text = stringResource(id = R.string.edit), fontSize = 15.sp,
                                                     color = Color.White, fontWeight = FontWeight.Bold
                                                 )
 
@@ -359,7 +361,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                                 )
                                                 Spacer(modifier = Modifier.width(8.dp))
                                                 Text(
-                                                    text = "Borrar", fontSize = 15.sp,
+                                                    text = stringResource(id = R.string.delete), fontSize = 15.sp,
                                                     color = Color.White, fontWeight = FontWeight.Bold
                                                 )
                                             }
@@ -370,7 +372,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                         }
                     }
                     item{
-                        Text("Tareas Vencidas", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.expired_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
                     }
                     if(expiredTasks.isEmpty()){
                         item {
@@ -388,7 +390,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                 )
                             ){
                                 Text(
-                                    text = "No hay tareas vencidas",
+                                    text = stringResource(id = R.string.no_expired_tasks),
                                     fontSize = 15.sp,
                                     color = Color.White,
                                     modifier = Modifier.padding(16.dp),
@@ -492,7 +494,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                         }
                     }
                     item {
-                        Text("Tareas pendientes de validación", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.validation_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
                     }
                     if(onHoldTasks.isEmpty()){
                         item {
@@ -510,7 +512,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                 )
                             ){
                                 Text(
-                                    text = "No hay tareas pendientes de validación",
+                                    text = stringResource(id = R.string.no_validation_tasks),
                                     fontSize = 15.sp,
                                     color = Color.White,
                                     modifier = Modifier.padding(16.dp),
@@ -614,7 +616,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                         }
                     }
                     item {
-                        Text("Tareas marcadas como Completadas", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.mark_completed_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
                     }
                     if(completedTasks.isEmpty()){
                         item {
@@ -632,7 +634,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                 )
                             ){
                                 Text(
-                                    text = "No hay tareas marcadas como completadas",
+                                    text = stringResource(id = R.string.no_mark_completed_tasks),
                                     fontSize = 15.sp,
                                     color = Color.White,
                                     modifier = Modifier.padding(16.dp),
@@ -736,7 +738,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                         }
                     }
                     item {
-                        Text("Tareas Completadas", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.completed_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
                     }
                     if(doneTasks.isEmpty()){
                         item {
@@ -754,7 +756,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                 )
                             ){
                                 Text(
-                                    text = "No hay tareas completadas",
+                                    text = stringResource(id = R.string.no_completed_tasks),
                                     fontSize = 15.sp,
                                     color = Color.White,
                                     modifier = Modifier.padding(16.dp),
@@ -873,7 +875,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                             )
                                             Spacer(modifier = Modifier.width(8.dp))
                                             Text(
-                                                text = "Borrar", fontSize = 15.sp,
+                                                text = stringResource(id = R.string.delete), fontSize = 15.sp,
                                                 color = Color.White, fontWeight = FontWeight.Bold
                                             )
                                         }
@@ -907,7 +909,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
-                                text = "No hay tareas programadas para: ${member?.name ?: "Este miembro"}",
+                                text = stringResource(id = R.string.member_details_no_scheduled_tasks_for_member) + ": ${member?.name ?: "Este miembro"}",
                                 fontSize = 25.sp,
                                 color = Color(0xFFFFFFFF)
                             )
@@ -956,8 +958,8 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                     showDeleteDialog = false
                     taskIdToDelete = null
                 },
-                title = { Text("Confirmar eliminación") },
-                text = { Text("¿Estás seguro de que deseas borrar esta tarea?") },
+                title = { Text(stringResource(id = R.string.confirm_delete)) },
+                text = { Text(stringResource(id = R.string.confirm_task_delete)) },
                 confirmButton = {
                     TextButton(
                         colors = ButtonDefaults.textButtonColors(Color(0xFFF44336)),
@@ -973,7 +975,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                         }
                         showDeleteDialog = false
                     }) {
-                        Text("Borrar", color = Color.White)
+                        Text(stringResource(id = R.string.delete), color = Color.White)
                     }
                 },
                 dismissButton = {
@@ -983,7 +985,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                         showDeleteDialog = false
                         taskIdToDelete = null
                     }) {
-                        Text("Cancelar", color = Color.White)
+                        Text(stringResource(id = R.string.cancel), color = Color.White)
                     }
                 }
             )
@@ -994,8 +996,8 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                 onDismissRequest = {
                     showDeleteMemberDialog = false
                 },
-                title = { Text("Confirmar eliminación") },
-                text = { Text("¿Estás seguro de que deseas eliminar a ${member?.name} ${member?.surname} (${member?.username}) del grupo?") },
+                title = { Text(stringResource(id = R.string.confirm_delete)) },
+                text = { Text(stringResource(id = R.string.member_details_confirm_delete_member_text, member?.name ?: "", member?.surname ?: "", member?.username ?: "")) },
                 confirmButton = {
                     TextButton(
                         colors = ButtonDefaults.textButtonColors(Color(0xFFF44336)),
@@ -1008,7 +1010,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                 nav.popBackStack()
                             }
                         }) {
-                        Text("Eliminar", color = Color.White)
+                        Text(stringResource(id = R.string.delete), color = Color.White)
                     }
                 },
                 dismissButton = {
@@ -1017,7 +1019,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                         onClick = {
                             showDeleteMemberDialog = false
                         }) {
-                        Text("Cancelar", color = Color.White)
+                        Text(stringResource(id = R.string.cancel), color = Color.White)
                     }
                 }
             )

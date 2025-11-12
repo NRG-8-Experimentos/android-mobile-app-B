@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Synhub</string>
     <string name="login_message">Welcome to Synhub please log in</string>
@@ -5,12 +6,12 @@
     <string name="user_placeholder">User</string>
     <string name="insert_password_label">Insert Password</string>
     <string name="password_placeholder">Password</string>
+    <string name="user_not_leader">Your user is not a leader.</string>
+    <string name="invalid_credentials">Invalid username or password.</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="error_title">Login error</string>
     <string name="accept">Accept</string>
-    <string name="user_not_leader">Your user is not a leader.</string>
-    <string name="invalid_credentials">Invalid username or password.</string>
     <string name="register_title">Register</string>
     <string name="name_label">First name</string>
     <string name="surname_label">Last name</string>

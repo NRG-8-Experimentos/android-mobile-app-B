@@ -39,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,6 +48,7 @@ import com.example.synhub.invitations.viewmodel.InvitationViewModel
 import com.example.synhub.shared.components.TopBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import nrg.inc.synhub.R
 
 @Composable
 fun Invitations(nav: NavHostController) {
@@ -58,7 +60,7 @@ fun Invitations(nav: NavHostController) {
                 function = {
                     nav.navigate("Home")
                 },
-                "Solicitudes de unión",
+                stringResource(id = R.string.join_requests_title),
                 Icons.AutoMirrored.Filled.ArrowBack
             )
         }
@@ -188,7 +190,7 @@ fun InvitationsScreen(modifier: Modifier, nav: NavHostController) {
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
                                         Text(
-                                            text = "Aceptar", fontSize = 15.sp,
+                                            text = stringResource(id = R.string.accept), fontSize = 15.sp,
                                             color = Color.White, fontWeight = FontWeight.Bold
                                         )
 
@@ -212,7 +214,7 @@ fun InvitationsScreen(modifier: Modifier, nav: NavHostController) {
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
                                         Text(
-                                            text = "Rechazar", fontSize = 15.sp,
+                                            text = stringResource(id = R.string.reject), fontSize = 15.sp,
                                             color = Color.White, fontWeight = FontWeight.Bold
                                         )
                                     }
@@ -248,7 +250,7 @@ fun NoInvitations(){
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "No hay invitationes pendientes",
+                    text = stringResource(id = R.string.no_invitations),
                     fontSize = 20.sp,
                     color = Color(0xFFFFFFFF)
                 )

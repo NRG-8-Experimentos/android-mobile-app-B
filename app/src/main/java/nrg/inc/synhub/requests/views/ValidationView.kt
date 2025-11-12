@@ -38,6 +38,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -49,6 +50,7 @@ import com.example.synhub.requests.application.dto.RequestResponse
 import com.example.synhub.requests.viewModel.RequestViewModel
 import com.example.synhub.shared.components.TopBar
 import com.example.synhub.tasks.viewmodel.TaskViewModel
+import nrg.inc.synhub.R
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -73,7 +75,7 @@ fun ValidationView(nav: NavHostController, taskId: String?, requestId: String?) 
                 function = {
                     nav.popBackStack()
                 },
-                title = "Validación de Tarea",
+                title = stringResource(id = R.string.validation_top_bar_title),
                 Icons.AutoMirrored.Filled.ArrowBack
             )
         }
@@ -188,7 +190,7 @@ fun ValidationDetails(
                         Spacer(modifier = Modifier.height(10.dp))
                         HorizontalDivider(thickness = 2.dp)
                         Spacer(modifier = Modifier.height(10.dp))
-                        Text(text = "Comentario: ${request?.task?.description}", color = Color.White)
+                        Text(text = stringResource(id = R.string.comment) + ": ${request?.task?.description}", color = Color.White)
                     }
                 }
                 Column(
@@ -198,8 +200,8 @@ fun ValidationDetails(
                 ) {
                     Text(
                         text = when (request?.task?.status) {
-                            "COMPLETED" -> "Tiempo de desarrollo"
-                            else -> "Tiempo de desarrollo asignado"
+                            "COMPLETED" -> stringResource(id = R.string.validation_time_development)
+                            else -> stringResource(id = R.string.validation_time_development_assigned)
                         },
                         textAlign = TextAlign.Center,
                         fontSize = 12.sp,
@@ -251,7 +253,7 @@ fun ValidationDetails(
             Spacer(
                 modifier = Modifier
                 .width(8.dp))
-            Text("Reprogramar")
+            Text(stringResource(id = R.string.reschedule))
         }
         if (request?.requestType == "SUBMISSION") {
             Button(
@@ -277,7 +279,7 @@ fun ValidationDetails(
                 Spacer(
                     modifier = Modifier
                         .width(8.dp))
-                Text("Marcar como completado")
+                Text(stringResource(id = R.string.mark_completed))
             }
         }
         if (request?.requestType == "MODIFICATION") {
@@ -304,7 +306,7 @@ fun ValidationDetails(
                 Spacer(
                     modifier = Modifier
                         .width(8.dp))
-                Text("Denegar")
+                Text(stringResource(id = R.string.deny))
             }
         }
 
