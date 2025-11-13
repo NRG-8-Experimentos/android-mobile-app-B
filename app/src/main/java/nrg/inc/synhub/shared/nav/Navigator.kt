@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.synhub.analytics.views.AnalyticsAndReports
+import nrg.inc.synhub.analytics.views.AnalyticsAndReports
 import com.example.synhub.groups.views.CreateGroup
 import com.example.synhub.groups.views.Group
 import com.example.synhub.groups.views.MemberDetails
