@@ -3,8 +3,10 @@ package com.example.synhub.requests.model.response
 import com.example.synhub.requests.application.dto.CreateRequest
 import com.example.synhub.requests.application.dto.RequestResponse
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 
@@ -40,4 +42,11 @@ interface RequestsWebService {
     // Get all requests from a group
     @GET("leader/group/requests")
     suspend fun getGroupRequests(): Response<List<RequestResponse>>
+
+    // Create a new request
+    @POST("tasks/{taskId}/requests")
+    suspend fun createRequest(
+        @Path("taskId") taskId: Long,
+        @Body request: CreateRequest
+    ): Response<RequestResponse>
 }
