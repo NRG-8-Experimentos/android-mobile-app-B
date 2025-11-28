@@ -132,4 +132,8 @@
     <string name="no_members_reprogramed">Ningún miembro ha reprogramado tareas</string>
     <string name="loading_metrics">Cargando métricas</string>
     <string name="please_wait">Por favor espera</string>
+    <string name="appearance">Apariencia</string>
+    <string name="appearance_system">Sistema</string>
+    <string name="appearance_light">Claro</string>
+    <string name="appearance_dark">Oscuro</string>
 </resources>

@@ -1,4 +1,6 @@
 package com.example.synhub.analytics.views
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -55,19 +57,21 @@ import kotlinx.coroutines.launch
 import com.example.synhub.analytics.model.response.AnalyticsWebService
 import nrg.inc.synhub.R
 
-// Colores adaptados de Tasks
-private val BluePrimary = Color(0xFF1A4E85)
-private val CardBackground = Color(0xFFF5F5F5)
-private val CardHeaderBackground = Color(0xFF1A4E85)
-private val CardHeaderText = Color.White
+@Composable private fun BluePrimary()         = cPrimary()
+@Composable private fun CardBackground()      = cCard()
+@Composable private fun CardHeaderBackground()= cPrimary()
+@Composable private fun CardHeaderText()      = cOnPrimary()
+@Composable private fun CardBorder()          = cOutline()
+@Composable private fun CardLight()           = cSurface()
+
+// Acentos: se quedan como estaban
 private val AccentOrange = Color(0xFFFF9800)
-private val AccentRed = Color(0xFFF44336)
-private val AccentBlue = Color(0xFF4A90E2)
-private val AccentGreen = Color(0xFF4CAF50)
+private val AccentRed    = Color(0xFFF44336)
+private val AccentBlue   = Color(0xFF4A90E2)
+private val AccentGreen  = Color(0xFF4CAF50)
 private val AccentYellow = Color(0xFFFDD634)
-private val AccentPending = Color(0xFFFF832A)
-private val CardBorder = Color(0xFFE0E0E0)
-private val CardLight = Color(0xFFFFFFFF)
+private val AccentPending= Color(0xFFFF832A)
+
 
 @Composable
 fun FriendlyNames(): Map<String, String> {
@@ -134,7 +138,7 @@ fun MetricCard(
             .padding(2.dp),
         shape = RoundedCornerShape(18.dp),
         shadowElevation = 6.dp,
-        color = CardBackground
+        color = CardBackground()
     ) {
         Column(
             modifier = Modifier
@@ -142,7 +146,7 @@ fun MetricCard(
         ) {
             Text(
                 text = title,
-                color = BluePrimary,
+                color = BluePrimary(),
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
             )
@@ -150,7 +154,7 @@ fun MetricCard(
                 modifier = Modifier
                     .padding(vertical = 8.dp)
                     .fillMaxWidth(),
-                color = CardBorder,
+                color = CardBorder(),
                 thickness = 1.dp
             )
             Text(
@@ -199,7 +203,7 @@ fun EnhancedBarChart(distribution: Map<String, Any>?) {
             ) {
                 Text(
                     text = member,
-                    color = BluePrimary,
+                    color = BluePrimary(),
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Medium,
                     modifier = Modifier.width(80.dp)
@@ -306,7 +310,7 @@ fun SectionTitle(title: String, icon: @Composable (() -> Unit)? = null) {
         }
         Text(
             text = title,
-            color = BluePrimary,
+            color = BluePrimary(),
             fontWeight = FontWeight.Bold,
             fontSize = 22.sp
         )
@@ -330,14 +334,14 @@ fun MetricRow(label: String, value: String, highlight: Boolean = false) {
         Text(
             text = label,
             fontWeight = if (highlight) FontWeight.Bold else FontWeight.Normal,
-            color = if (highlight) BluePrimary else Color(0xFF333333),
+            color = cTextPrimary(),
             fontSize = 16.sp,
             modifier = Modifier.weight(1f)
         )
         Text(
             text = value,
             fontWeight = if (highlight) FontWeight.Bold else FontWeight.Normal,
-            color = if (highlight) BluePrimary else Color(0xFF333333),
+            color = cTextPrimary() ,
             fontSize = 16.sp
         )
     }
@@ -364,16 +368,16 @@ fun AnalyticsOverviewSection(analyticsState: AnalyticsState) {
             .padding(horizontal = 2.dp, vertical = 2.dp),
         shape = RoundedCornerShape(18.dp),
         elevation = androidx.compose.material3.CardDefaults.cardElevation(8.dp),
-        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = CardBackground)
+        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = cCard())
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(CardLight, RoundedCornerShape(12.dp))
+                .background(cSurface(), RoundedCornerShape(12.dp))
                 .padding(16.dp)
         ) {
             SectionTitle(stringResource(id = R.string.general_summary), icon = {
-                Icon(Icons.Filled.Info, contentDescription = null, tint = BluePrimary)
+                Icon(Icons.Filled.Info, contentDescription = null, tint = cPrimary())
             })
             MetricRow(stringResource(id = R.string.completed_tasks), completed, highlight = true)
             MetricRow(stringResource(id = R.string.pending_tasks), inProgress)
@@ -396,19 +400,19 @@ fun AnalyticsDistributionSection(
             .padding(horizontal = 2.dp, vertical = 2.dp),
         shape = RoundedCornerShape(18.dp),
         elevation = androidx.compose.material3.CardDefaults.cardElevation(8.dp),
-        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = CardBackground)
+        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = CardBackground())
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(CardLight, RoundedCornerShape(12.dp))
+                .background(CardLight(), RoundedCornerShape(12.dp))
                 .padding(16.dp)
         ) {
             SectionTitle(stringResource(id = R.string.tasks_distribution), icon = {
-                Icon(Icons.Filled.AccountCircle, contentDescription = null, tint = BluePrimary)
+                Icon(Icons.Filled.AccountCircle, contentDescription = null, tint = BluePrimary())
             })
             if (dist.isNullOrEmpty()) {
-                Text(stringResource(id = R.string.no_available), color = Color.Gray)
+                Text(stringResource(id = R.string.no_available), color = cTextPrimary())
             } else {
                 val parsed = dist.mapNotNull { (_, v) ->
                     if (v is Map<*, *>) {
@@ -424,7 +428,7 @@ fun AnalyticsDistributionSection(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 8.dp)
-                        .background(CardLight, RoundedCornerShape(8.dp))
+                        .background(CardLight(), RoundedCornerShape(8.dp))
                         .padding(12.dp)
                 ) {
                     parsed.forEach { (memberName, count) ->
@@ -447,7 +451,7 @@ fun AnalyticsDistributionSection(
                             }
                             Text(
                                 text = memberName,
-                                color = BluePrimary,
+                                color = cTextPrimary(),
                                 fontSize = 15.sp,
                                 fontWeight = FontWeight.Medium,
                                 modifier = Modifier.width(80.dp)
@@ -518,25 +522,25 @@ fun AnalyticsCompletionTimeSection(
             .padding(horizontal = 2.dp, vertical = 2.dp),
         shape = RoundedCornerShape(18.dp),
         elevation = androidx.compose.material3.CardDefaults.cardElevation(8.dp),
-        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = CardBackground)
+        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = CardBackground())
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(CardLight, RoundedCornerShape(12.dp))
+                .background(CardLight(), RoundedCornerShape(12.dp))
                 .padding(16.dp)
         ) {
             SectionTitle(stringResource(id = R.string.analytics_completion_time_section_title) + ":", icon = {
-                Icon(Icons.Filled.DateRange, contentDescription = null, tint = BluePrimary)
+                Icon(Icons.Filled.DateRange, contentDescription = null, tint = BluePrimary())
             })
             if (formatted.isNotBlank() && formatted != stringResource(id = R.string.no_time_registered)) {
                 MetricRow(stringResource(id = R.string.analytics_avg_completion_time_label) + ":", formatted, highlight = true)
             }
             Spacer(modifier = Modifier.height(12.dp))
-            Text(stringResource(id = R.string.analytics_avg_time_per_member_label) + ":", color = BluePrimary, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Text(stringResource(id = R.string.analytics_avg_time_per_member_label) + ":", color = cPrimary(), fontWeight = FontWeight.Bold, fontSize = 16.sp)
             Spacer(modifier = Modifier.height(4.dp))
             if (loading && members.isNotEmpty()) {
-                Text(stringResource(id = R.string.loading_time_member) + "...", color = Color.Gray, fontSize = 14.sp)
+                Text(stringResource(id = R.string.loading_time_member) + "...", color = cTextPrimary(), fontSize = 14.sp)
             } else {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     members.forEach { member ->
@@ -559,7 +563,7 @@ fun AnalyticsCompletionTimeSection(
                             Text(
                                 text = name,
                                 fontSize = 15.sp,
-                                color = Color(0xFF333333),
+                                color = cTextPrimary(),
                                 modifier = Modifier.weight(1f)
                             )
                             Text(
@@ -596,24 +600,24 @@ fun AnalyticsRescheduledSection(
             .padding(horizontal = 2.dp, vertical = 2.dp),
         shape = RoundedCornerShape(18.dp),
         elevation = androidx.compose.material3.CardDefaults.cardElevation(8.dp),
-        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = CardBackground)
+        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = CardBackground())
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(CardLight, RoundedCornerShape(12.dp))
+                .background(CardLight(), RoundedCornerShape(12.dp))
                 .padding(16.dp)
         ) {
             SectionTitle(stringResource(id = R.string.reprogramed_tasks), icon = {
-                Icon(Icons.Filled.Build, contentDescription = null, tint = BluePrimary)
+                Icon(Icons.Filled.Build, contentDescription = null, tint = cPrimary())
             })
             MetricRow(stringResource(id = R.string.total_reprogramed) + ":", totalRescheduled.toString(), highlight = true)
             MetricRow(stringResource(id = R.string.total_tasks) + ":", total)
             Spacer(modifier = Modifier.height(12.dp))
-            Text(stringResource(id = R.string.members_who_reprogram) + ":", color = BluePrimary, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Text(stringResource(id = R.string.members_who_reprogram) + ":", color = cPrimary(), fontWeight = FontWeight.Bold, fontSize = 16.sp)
             Spacer(modifier = Modifier.height(4.dp))
             if (rescheduledMemberIds.isEmpty()) {
-                Text(stringResource(id = R.string.no_members_reprogramed), color = Color.Gray, fontSize = 14.sp)
+                Text(stringResource(id = R.string.no_members_reprogramed), color = cTextPrimary(), fontSize = 14.sp)
             } else {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     members.filter { it.id in rescheduledMemberIds }.forEachIndexed { idx, member ->
@@ -636,7 +640,7 @@ fun AnalyticsRescheduledSection(
                             Text(
                                 text = name,
                                 fontSize = 15.sp,
-                                color = Color(0xFF333333),
+                                color = cTextPrimary(),
                                 modifier = Modifier.weight(1f)
                             )
                             Text(
@@ -704,8 +708,8 @@ fun AnalyticsAndReports(
         Scaffold(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.White), // Cambiado a fondo blanco
-            containerColor = Color.White, // Cambiado a fondo blanco
+                .background(cBG()), // Cambiado a fondo blanco
+            containerColor = cBG(), // Cambiado a fondo blanco
             topBar = {
                 TopBar(
                     function = {

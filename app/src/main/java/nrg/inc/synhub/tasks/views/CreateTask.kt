@@ -70,13 +70,15 @@ import java.util.Calendar
 import java.util.Locale
 import kotlin.text.format
 import kotlin.text.set
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CreateTask(nav: NavHostController) {
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
@@ -137,8 +139,8 @@ fun CreateTaskScreen(modifier: Modifier = Modifier, nav: NavHostController
                 keyboardType = KeyboardType.Text
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {txtTitle=it}
@@ -160,8 +162,8 @@ fun CreateTaskScreen(modifier: Modifier = Modifier, nav: NavHostController
                 keyboardType = KeyboardType.Text
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {txtDescription=it}
@@ -196,8 +198,8 @@ fun CreateTaskScreen(modifier: Modifier = Modifier, nav: NavHostController
                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
                 },
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFFF3F3F3),
-                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = cSurface(),
+                    unfocusedContainerColor = cSurface(),
                     cursorColor = Color.Cyan
                 )
             )

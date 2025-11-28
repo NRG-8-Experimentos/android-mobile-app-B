@@ -44,6 +44,8 @@ import com.example.synhub.shared.icons.personSVG
 import com.example.synhub.shared.viewmodel.LogInViewModel
 import nrg.inc.synhub.shared.components.LanguageSwitchingButtons
 import kotlin.math.log
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 
 @Composable

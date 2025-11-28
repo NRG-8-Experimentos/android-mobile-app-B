@@ -212,6 +212,10 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
         LanguageSwitchingButtons()
 
         Spacer(modifier = Modifier.height(gap))
+
+        AppearanceSwitcher()
+        Spacer(modifier = Modifier.height(gap))
+
         HorizontalDivider()
         Spacer(modifier = Modifier.height(gap))
 

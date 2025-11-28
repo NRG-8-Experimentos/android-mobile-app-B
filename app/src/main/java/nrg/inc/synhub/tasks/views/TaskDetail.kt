@@ -43,6 +43,8 @@ import androidx.compose.ui.res.stringResource
 import com.example.synhub.tasks.application.dto.TaskResponse
 import nrg.inc.synhub.R
 import java.time.format.DateTimeFormatter
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -56,7 +58,7 @@ fun TaskDetail(nav: NavHostController, taskId: String?) {
 
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
