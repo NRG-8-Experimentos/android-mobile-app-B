@@ -3,6 +3,7 @@ package com.example.synhub.analytics.model.response
 import com.example.synhub.analytics.application.dto.AnalyticsResponse
 import com.example.synhub.analytics.application.dto.GroupMemberCountResponse
 import com.example.synhub.analytics.application.dto.TaskTimePassedResponse
+import com.example.synhub.tasks.application.dto.TaskResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -25,5 +26,10 @@ interface AnalyticsWebService {
 
     @GET("metrics/member/{memberId}/tasks/avg-completion-time")
     suspend fun getAvgCompletionTimeForMember(@Path("memberId") memberId: Long): Response<AnalyticsResponse>
-}
 
+    @GET("tasks")
+    suspend fun getAllTasks(): Response<List<TaskResponse>>
+
+    @GET("tasks/status/{status}")
+    suspend fun getTasksByStatus(@Path("status") status: String): Response<List<TaskResponse>>
+}

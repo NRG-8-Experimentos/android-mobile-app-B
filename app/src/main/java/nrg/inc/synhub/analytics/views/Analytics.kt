@@ -2,10 +2,14 @@ package com.example.synhub.analytics.views
 import com.example.synhub.shared.theme.*
 import androidx.compose.material3.MaterialTheme
 
-import android.util.Log
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -14,16 +18,8 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material3.Divider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ModalDrawerSheet
-import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.rememberDrawerState
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -36,25 +32,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.example.synhub.groups.viewmodel.GroupViewModel
-import com.example.synhub.groups.viewmodel.MemberViewModel
+import com.example.synhub.analytics.model.KanbanColumn
 import com.example.synhub.analytics.viewmodel.AnalyticsState
 import com.example.synhub.analytics.viewmodel.AnalyticsViewModel
+import com.example.synhub.groups.viewmodel.GroupViewModel
+import com.example.synhub.groups.viewmodel.MemberViewModel
 import com.example.synhub.shared.components.SlideMenu
 import com.example.synhub.shared.components.TopBar
-import kotlinx.coroutines.delay
-import com.example.synhub.groups.model.response.MembersWebService
-import com.example.synhub.shared.model.client.RetrofitClient
 import com.example.synhub.tasks.application.dto.TaskResponse
+import com.example.synhub.tasks.views.getDividerColor
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.example.synhub.analytics.model.response.AnalyticsWebService
+import com.example.synhub.groups.application.dto.MemberResponse
+import com.example.synhub.groups.model.response.MembersWebService
+import com.example.synhub.shared.model.client.RetrofitClient
+import com.example.synhub.shared.utils.formatDate
 import nrg.inc.synhub.R
 
 @Composable private fun BluePrimary()         = cPrimary()
@@ -268,7 +270,7 @@ fun TaskTimesList(memberId: Long?) {
             LaunchedEffect(taskId, status) {
                 if (taskId != null) {
                     while (true) {
-                        val analyticsApi = RetrofitClient.analyticsWebService as com.example.synhub.analytics.model.response.AnalyticsWebService
+                        val analyticsApi = RetrofitClient.analyticsWebService as AnalyticsWebService
                         val resp = analyticsApi.getTaskTimePassed(taskId)
                         timePassed = resp.body()?.timePassed
                         if (status != "IN_PROGRESS") break
@@ -362,7 +364,7 @@ fun AnalyticsOverviewSection(analyticsState: AnalyticsState) {
         ?: analyticsState.rescheduledTasks?.details?.get("completedTasks")
     val completedTasks = formatIntValue(completedTasksValue)
 
-    androidx.compose.material3.Card(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 2.dp, vertical = 2.dp),
@@ -391,10 +393,10 @@ fun AnalyticsOverviewSection(analyticsState: AnalyticsState) {
 @Composable
 fun AnalyticsDistributionSection(
     analyticsState: AnalyticsState,
-    members: List<com.example.synhub.groups.application.dto.MemberResponse> = emptyList()
+    members: List<MemberResponse> = emptyList()
 ) {
     val dist = analyticsState.taskDistribution?.details
-    androidx.compose.material3.Card(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 2.dp, vertical = 2.dp),
@@ -487,7 +489,7 @@ fun AnalyticsDistributionSection(
 @Composable
 fun AnalyticsCompletionTimeSection(
     analyticsState: AnalyticsState,
-    members: List<com.example.synhub.groups.application.dto.MemberResponse> = emptyList()
+    members: List<MemberResponse> = emptyList()
 ) {
     val avg = analyticsState.avgCompletionTime
     val avgDays = avg?.value
@@ -516,7 +518,7 @@ fun AnalyticsCompletionTimeSection(
         loading = false
     }
 
-    androidx.compose.material3.Card(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 2.dp, vertical = 2.dp),
@@ -583,7 +585,7 @@ fun AnalyticsCompletionTimeSection(
 @Composable
 fun AnalyticsRescheduledSection(
     analyticsState: AnalyticsState,
-    members: List<com.example.synhub.groups.application.dto.MemberResponse> = emptyList()
+    members: List<MemberResponse> = emptyList()
 ) {
     val rescheduled = analyticsState.rescheduledTasks
     val totalRescheduled = (rescheduled?.details?.get("rescheduled") as? Number)?.toInt() ?: 0
@@ -594,7 +596,7 @@ fun AnalyticsRescheduledSection(
     val perMember = if (memberCount > 0) totalRescheduled / memberCount else 0
     val remainder = if (memberCount > 0) totalRescheduled % memberCount else 0
 
-    androidx.compose.material3.Card(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 2.dp, vertical = 2.dp),
@@ -664,6 +666,428 @@ fun AnalyticsRescheduledSection(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun KanbanBoard(columns: List<KanbanColumn>) {
+    if (columns.isEmpty()) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(400.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Icon(
+                    imageVector = Icons.Filled.Info,
+                    contentDescription = null,
+                    tint = Color.Gray,
+                    modifier = Modifier.size(48.dp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Text("No hay tareas disponibles", color = Color.Gray)
+            }
+        }
+        return
+    }
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(450.dp)
+            .horizontalScroll(rememberScrollState())
+            .padding(vertical = 8.dp)
+    ) {
+        columns.forEach { column ->
+            KanbanColumnCard(column)
+            Spacer(modifier = Modifier.width(16.dp))
+        }
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun KanbanColumnCard(column: KanbanColumn) {
+    val color = parseColor(column.color)
+    var showTaskDialog by remember { mutableStateOf(false) }
+    var selectedTask by remember { mutableStateOf<TaskResponse?>(null) }
+
+    Card(
+        modifier = Modifier.width(300.dp),
+        shape = RoundedCornerShape(12.dp),
+        elevation = CardDefaults.cardElevation(8.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White)
+    ) {
+        Column(modifier = Modifier.fillMaxHeight()) {
+            // Header
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(color, RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp))
+                    .padding(16.dp)
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = getIconForColumn(column.icon),
+                        contentDescription = null,
+                        tint = Color.White,
+                        modifier = Modifier.size(24.dp)
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Text(
+                        text = column.title,
+                        color = Color.White,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 16.sp,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Box(
+                        modifier = Modifier
+                            .background(Color.White.copy(alpha = 0.3f), RoundedCornerShape(12.dp))
+                            .padding(horizontal = 12.dp, vertical = 4.dp)
+                    ) {
+                        Text(
+                            text = "${column.tasks.size}",
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 14.sp
+                        )
+                    }
+                }
+            }
+
+            // Content
+            if (column.tasks.isEmpty()) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Icon(
+                            imageVector = Icons.Filled.Info,
+                            contentDescription = null,
+                            tint = Color.Gray.copy(alpha = 0.3f),
+                            modifier = Modifier.size(48.dp)
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text("Sin tareas", color = Color.Gray.copy(alpha = 0.5f), fontSize = 14.sp)
+                    }
+                }
+            } else {
+                LazyColumn(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    items(column.tasks.size) { index ->
+                        TaskCard(column.tasks[index]) { task ->
+                            selectedTask = task
+                            showTaskDialog = true
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (showTaskDialog && selectedTask != null) {
+        TaskDetailsDialog(
+            task = selectedTask!!,
+            onDismiss = { showTaskDialog = false }
+        )
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun TaskCard(task: TaskResponse, onClick: (TaskResponse) -> Unit) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick(task) },
+        shape = RoundedCornerShape(10.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFF0F6FF)),
+        elevation = CardDefaults.cardElevation(2.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            // Title
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.Top
+            ) {
+                Text(
+                    text = task.title,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 15.sp,
+                    color = BluePrimary,
+                    modifier = Modifier.weight(1f)
+                )
+                Icon(
+                    imageVector = Icons.Filled.Info,
+                    contentDescription = null,
+                    tint = Color.Gray.copy(alpha = 0.5f),
+                    modifier = Modifier.size(20.dp)
+                )
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Description
+            Text(
+                text = task.description,
+                fontSize = 13.sp,
+                color = Color.Gray,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                lineHeight = 18.sp
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+                    .background(
+                        color = getDividerColor(task.createdAt, task.dueDate, task.status),
+                        shape = RoundedCornerShape(2.dp)
+                    )
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // Footer
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.DateRange,
+                    contentDescription = null,
+                    tint = Color.Gray,
+                    modifier = Modifier.size(16.dp)
+                )
+                Spacer(modifier = Modifier.width(6.dp))
+                Text(
+                    text = formatDate(task.dueDate),
+                    fontSize = 12.sp,
+                    color = Color.Gray,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun TaskDetailsDialog(task: TaskResponse, onDismiss: () -> Unit) {
+    val statusColor = getStatusColor(task.status)
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = null,
+        text = {
+            Column(modifier = Modifier.fillMaxWidth()) {
+                // Header
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(statusColor, RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
+                        .padding(20.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = getStatusIcon(task.status),
+                            contentDescription = null,
+                            tint = Color.White,
+                            modifier = Modifier.size(28.dp)
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = "Detalles de la Tarea",
+                                color = Color.White,
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(
+                                text = getStatusLabel(task.status),
+                                color = Color.White.copy(alpha = 0.7f),
+                                fontSize = 12.sp
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                // Content
+                Column(modifier = Modifier.padding(horizontal = 20.dp)) {
+                    Text("Título", fontSize = 12.sp, color = Color.Gray, fontWeight = FontWeight.SemiBold)
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(task.title, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = BluePrimary)
+                    Spacer(modifier = Modifier.height(16.dp))
+                    HorizontalDivider()
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Text("Descripción", fontSize = 12.sp, color = Color.Gray, fontWeight = FontWeight.SemiBold)
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = if (task.description.isNotEmpty()) task.description else "Sin descripción",
+                        fontSize = 15.sp,
+                        color = Color.Black.copy(alpha = 0.87f),
+                        lineHeight = 22.sp
+                    )
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    DetailRow(Icons.Filled.DateRange, "Fecha de vencimiento", formatDate(task.dueDate), AccentBlue)
+                    Spacer(modifier = Modifier.height(12.dp))
+                    DetailRow(Icons.Filled.DateRange, "Fecha de creación", formatDate(task.createdAt), AccentGreen)
+                    Spacer(modifier = Modifier.height(12.dp))
+                    DetailRow(Icons.Filled.Refresh, "Última actualización", formatDate(task.updatedAt), AccentOrange)
+
+                    Spacer(modifier = Modifier.height(20.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color(0xFFF0F6FF), RoundedCornerShape(8.dp))
+                            .padding(12.dp)
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Filled.Info, contentDescription = null, tint = BluePrimary, modifier = Modifier.size(18.dp)) // Changed from Label
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("ID: ${task.id}", fontSize = 13.sp, color = BluePrimary, fontWeight = FontWeight.SemiBold)
+                        }
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = onDismiss,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp, vertical = 20.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = BluePrimary),
+                shape = RoundedCornerShape(10.dp)
+            ) {
+                Text("Cerrar", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+            }
+        },
+        dismissButton = null,
+        shape = RoundedCornerShape(20.dp)
+    )
+}
+
+@Composable
+fun DetailRow(icon: ImageVector, label: String, value: String, color: Color) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
+            modifier = Modifier
+                .background(color.copy(alpha = 0.1f), RoundedCornerShape(8.dp))
+                .padding(8.dp)
+        ) {
+            Icon(icon, contentDescription = null, tint = color, modifier = Modifier.size(20.dp))
+        }
+        Spacer(modifier = Modifier.width(12.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(label, fontSize = 12.sp, color = Color.Gray)
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(value, fontSize = 15.sp, fontWeight = FontWeight.SemiBold, color = Color.Black.copy(alpha = 0.87f))
+        }
+    }
+}
+
+fun parseColor(hexColor: String): Color {
+    val hex = hexColor.removePrefix("#")
+    return Color(("FF$hex").toLong(16))
+}
+
+fun getIconForColumn(iconName: String): ImageVector {
+    return when (iconName) {
+        "pause_circle_outline" -> Icons.Filled.Info
+        "autorenew" -> Icons.Filled.Refresh
+        "check_circle" -> Icons.Filled.Info
+        "done_all" -> Icons.Filled.Info
+        "error_outline" -> Icons.Filled.Info
+        else -> Icons.Filled.Info
+    }
+}
+
+fun getStatusColor(status: String): Color {
+    return when (status.uppercase()) {
+        "ON_HOLD" -> AccentOrange
+        "IN_PROGRESS" -> AccentBlue
+        "COMPLETED" -> AccentGreen
+        "DONE" -> Color(0xFF14b8a6)
+        "EXPIRED" -> AccentRed
+        else -> BluePrimary
+    }
+}
+
+fun getStatusIcon(status: String): ImageVector {
+    return when (status.uppercase()) {
+        "ON_HOLD" -> Icons.Filled.Info
+        "IN_PROGRESS" -> Icons.Filled.Refresh
+        "COMPLETED" -> Icons.Filled.Info
+        "DONE" -> Icons.Filled.Info
+        "EXPIRED" -> Icons.Filled.Info
+        else -> Icons.Filled.Info
+    }
+}
+
+fun getStatusLabel(status: String): String {
+    return when (status.uppercase()) {
+        "ON_HOLD" -> "Pendiente"
+        "IN_PROGRESS" -> "En Progreso"
+        "COMPLETED" -> "Completada"
+        "DONE" -> "Terminada"
+        "EXPIRED" -> "Atrasada"
+        else -> status
+    }
+}
+
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun AnalyticsKanbanSection(analyticsState: AnalyticsState) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 2.dp, vertical = 2.dp),
+        shape = RoundedCornerShape(18.dp),
+        elevation = CardDefaults.cardElevation(8.dp),
+        colors = CardDefaults.cardColors(containerColor = CardBackground)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(CardLight, RoundedCornerShape(12.dp))
+                .padding(16.dp)
+        ) {
+            SectionTitle("Tablero de Tareas", icon = {
+                Icon(Icons.Filled.Info, contentDescription = null, tint = BluePrimary)
+            })
+            Spacer(modifier = Modifier.height(8.dp))
+            KanbanBoard(columns = analyticsState.kanbanColumns)
+        }
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AnalyticsAndReports(
@@ -760,6 +1184,9 @@ fun AnalyticsAndReports(
                     ) {
                         item {
                             AnalyticsOverviewSection(analyticsState)
+                        }
+                        item {
+                            AnalyticsKanbanSection(analyticsState)
                         }
                         item {
                             AnalyticsDistributionSection(analyticsState, members)
