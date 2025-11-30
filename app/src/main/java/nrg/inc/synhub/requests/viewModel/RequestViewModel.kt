@@ -2,6 +2,7 @@ package com.example.synhub.requests.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.synhub.requests.application.dto.CreateRequest
 import com.example.synhub.requests.application.dto.RequestResponse
 import com.example.synhub.shared.model.client.RetrofitClient
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,6 +15,12 @@ class RequestViewModel: ViewModel() {
 
     private val _requests = MutableStateFlow<List<RequestResponse>>(emptyList())
     val requests: StateFlow<List<RequestResponse>> = _requests
+
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading
+
+    private val _error = MutableStateFlow<String?>(null)
+    val error: StateFlow<String?> = _error
 
     fun fetchRequestById(taskId: Long, requestId: Long) {
         viewModelScope.launch {
@@ -72,6 +79,53 @@ class RequestViewModel: ViewModel() {
                 }
             } catch (e: Exception) {
                 _requests.value = emptyList()
+            }
+        }
+    }
+
+    fun fetchRequestsByTaskId(taskId: Long) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                val response = RetrofitClient.requestsWebService.getRequestsByTaskId(taskId)
+                if (response.isSuccessful && response.body() != null) {
+                    _requests.value = response.body()!!
+                    _error.value = null
+                } else {
+                    _requests.value = emptyList()
+                    _error.value = "Error al cargar comentarios"
+                }
+            } catch (e: Exception) {
+                _requests.value = emptyList()
+                _error.value = e.message
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun createRequest(taskId: Long, description: String, requestType: String, onSuccess: () -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                val createRequest = CreateRequest(
+                    description = description,
+                    requestType = requestType,
+                    taskId = taskId
+                )
+                val response = RetrofitClient.requestsWebService.createRequest(taskId, createRequest)
+                if (response.isSuccessful && response.body() != null) {
+                    _error.value = null
+                    onSuccess()
+                } else {
+                    _error.value = "Error al crear comentario"
+                    onError("Error al crear comentario")
+                }
+            } catch (e: Exception) {
+                _error.value = e.message
+                onError(e.message ?: "Error desconocido")
+            } finally {
+                _isLoading.value = false
             }
         }
     }
