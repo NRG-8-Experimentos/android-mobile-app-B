@@ -20,8 +20,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Navigator()
+            nrg.inc.synhub.ui.theme.SynhubTheme {
+                Navigator()
+            }
         }
+
+    }
+
+    fun setAppAppearance(mode: Int) {
+        AppCompatDelegate.setDefaultNightMode(mode)
     }
 
     fun setAppLocale(localeTag: String?) {

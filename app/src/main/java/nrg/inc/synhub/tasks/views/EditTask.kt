@@ -67,6 +67,8 @@ import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -80,7 +82,7 @@ fun EditTask(nav: NavHostController, taskId: String?) {
 
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
@@ -147,8 +149,8 @@ fun EditTaskScreen(modifier: Modifier = Modifier, nav: NavHostController, task: 
                     keyboardType = KeyboardType.Text
                 ),
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFFF3F3F3),
-                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = cSurface(),
+                    unfocusedContainerColor = cSurface(),
                     cursorColor = Color.Cyan
                 ),
                 onValueChange = {txtTitle=it}
@@ -170,8 +172,8 @@ fun EditTaskScreen(modifier: Modifier = Modifier, nav: NavHostController, task: 
                     keyboardType = KeyboardType.Text
                 ),
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFFF3F3F3),
-                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = cSurface(),
+                    unfocusedContainerColor = cSurface(),
                     cursorColor = Color.Cyan
                 ),
                 onValueChange = {txtDescription=it}
@@ -205,8 +207,8 @@ fun EditTaskScreen(modifier: Modifier = Modifier, nav: NavHostController, task: 
                         ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
                     },
                     colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color(0xFFF3F3F3),
-                        unfocusedContainerColor = Color.White,
+                        focusedContainerColor = cSurface(),
+                        unfocusedContainerColor = cSurface(),
                         cursorColor = Color.Cyan
                     )
                 )

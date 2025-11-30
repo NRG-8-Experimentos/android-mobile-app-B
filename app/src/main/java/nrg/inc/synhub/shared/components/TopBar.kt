@@ -1,15 +1,9 @@
 package com.example.synhub.shared.components
 
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.font.FontWeight
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -21,27 +15,17 @@ fun TopBar(
 ){
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color(0xFFFDFDFD),
-            titleContentColor = Color.Black
+            containerColor = MaterialTheme.colorScheme.surface,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
+            navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+            actionIconContentColor = MaterialTheme.colorScheme.onSurface
         ),
-        title = {
-            Text( text = title,
-                fontWeight = FontWeight.Bold
-            )
-        },
+        title = { Text(text = title, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold) },
         navigationIcon = {
-            IconButton( onClick = {
-                function()
-            }) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = null,
-                    tint = Color.Black
-                )
+            IconButton(onClick = function) {
+                Icon(imageVector = icon, contentDescription = null)
             }
         },
-        actions = {
-            actions?.invoke()
-        }
+        actions = { actions?.invoke() }
     )
 }

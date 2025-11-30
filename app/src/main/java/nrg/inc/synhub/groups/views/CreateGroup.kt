@@ -41,12 +41,14 @@ import com.example.synhub.shared.icons.abcSVG
 import com.example.synhub.shared.icons.keyboardSVG
 import com.example.synhub.shared.icons.linkSVG
 import nrg.inc.synhub.R
-
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 @Composable
 fun CreateGroup(nav: NavHostController) {
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background
+        ,
         topBar = {
             TopBar(
                 function = {
@@ -95,7 +97,7 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
             leadingIcon = {
                 Icon(
                     imageVector = abcSVG,
-                    tint = Color.Gray,
+                    tint = cTextMuted(),
                     contentDescription = ""
                 )
             },
@@ -103,8 +105,8 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
                 keyboardType = KeyboardType.Text
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {txtNameGroup=it}
@@ -118,7 +120,7 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
             leadingIcon = {
                 Icon(
                     imageVector = keyboardSVG,
-                    tint = Color.Gray,
+                    tint = cTextMuted(),
                     contentDescription = ""
                 )
             },
@@ -126,8 +128,8 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
                 keyboardType = KeyboardType.Text
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {txtDescriptionGroup=it}
@@ -142,7 +144,7 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
             leadingIcon = {
                 Icon(
                     imageVector = linkSVG,
-                    tint = Color.Gray,
+                    tint = cTextMuted(),
                     contentDescription = ""
                 )
             },
@@ -150,8 +152,8 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
                 keyboardType = KeyboardType.Uri
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {txtUrlPfp=it}

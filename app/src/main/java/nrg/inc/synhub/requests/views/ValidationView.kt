@@ -52,6 +52,8 @@ import com.example.synhub.shared.components.TopBar
 import com.example.synhub.tasks.viewmodel.TaskViewModel
 import nrg.inc.synhub.R
 import java.time.format.DateTimeFormatter
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -69,7 +71,7 @@ fun ValidationView(nav: NavHostController, taskId: String?, requestId: String?) 
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
@@ -158,7 +160,7 @@ fun ValidationDetails(
             Text(
                 text = request?.task?.member?.name + " " + request?.task?.member?.surname,
                 fontWeight = FontWeight.Bold,
-                fontSize = 30.sp)
+                fontSize = 30.sp, color = cTextPrimary())
         }
         Card(
             modifier = Modifier

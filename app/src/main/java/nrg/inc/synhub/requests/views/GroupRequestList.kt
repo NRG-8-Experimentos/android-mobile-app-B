@@ -50,6 +50,8 @@ import coil.compose.AsyncImage
 import com.example.synhub.requests.viewModel.RequestViewModel
 import com.example.synhub.shared.components.TopBar
 import nrg.inc.synhub.R
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 
 @Composable
@@ -57,7 +59,7 @@ fun GroupRequestList(nav: NavHostController) {
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
@@ -174,18 +176,18 @@ fun GroupRequestsScreen(
                                             .height(160.dp)
                                             .weight(0.8f),
                                         colors = CardDefaults.cardColors(
-                                            containerColor = Color.White
+                                            containerColor = cSurface()
                                         )
                                     ) {
                                         Column(
                                             modifier = Modifier
                                                 .padding(16.dp),
                                         ) {
-                                            Text(text = request.task.title, color = Color.Black)
+                                            Text(text = request.task.title, color = cTextPrimary())
                                             Spacer(modifier = Modifier.height(10.dp))
                                             HorizontalDivider(thickness = 2.dp)
                                             Spacer(modifier = Modifier.height(10.dp))
-                                            Text(text = stringResource(id = R.string.comment) + ": ${request.description}", color = Color.Black)
+                                            Text(text = stringResource(id = R.string.comment) + ": ${request.description}", color = cTextPrimary())
                                         }
                                     }
                                     Box(

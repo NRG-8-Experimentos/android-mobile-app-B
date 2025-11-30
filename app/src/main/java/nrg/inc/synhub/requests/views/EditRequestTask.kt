@@ -73,6 +73,8 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -86,7 +88,7 @@ fun EditRequestTask(nav: NavHostController, taskId: String?, requestId: String?)
 
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
@@ -155,8 +157,8 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
                     keyboardType = KeyboardType.Email
                 ),
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFFF3F3F3),
-                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = cSurface(),
+                    unfocusedContainerColor = cSurface(),
                     cursorColor = Color.Cyan
                 ),
                 onValueChange = {txtTitle=it}
@@ -178,8 +180,8 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
                     keyboardType = KeyboardType.Email
                 ),
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFFF3F3F3),
-                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = cSurface(),
+                    unfocusedContainerColor = cSurface(),
                     cursorColor = Color.Cyan
                 ),
                 onValueChange = {txtDescription=it}
@@ -213,8 +215,8 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
                         ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
                     },
                     colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color(0xFFF3F3F3),
-                        unfocusedContainerColor = Color.White,
+                        focusedContainerColor = cSurface(),
+                        unfocusedContainerColor = cSurface(),
                         cursorColor = Color.Cyan
                     )
                 )
