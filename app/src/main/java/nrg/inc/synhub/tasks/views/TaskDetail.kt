@@ -129,7 +129,7 @@ fun TaskDetailScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        Color(0xFFF5F5F5),
+                        cCard(),
                         shape = RoundedCornerShape(15.dp)
                     )
                     .padding(10.dp),
@@ -140,7 +140,7 @@ fun TaskDetailScreen(
                         text = stringResource(id = R.string.label_title) + ":",
                         style = TextStyle(
                             fontSize = 20.sp,
-                            color = Color.Black,
+                            color = cTextPrimary(),
                             fontWeight = FontWeight.Bold
                         )
                     )
@@ -148,7 +148,7 @@ fun TaskDetailScreen(
                     Spacer(modifier = Modifier.size(15.dp))
                     Text(
                         text = task.title,
-                        style = TextStyle(fontSize = 18.sp, color = Color.Black)
+                        style = TextStyle(fontSize = 18.sp, color = cTextPrimary())
                     )
                 }
             }
@@ -156,7 +156,7 @@ fun TaskDetailScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        Color(0xFFF5F5F5),
+                        cCard(),
                         shape = RoundedCornerShape(15.dp)
                     )
                     .padding(10.dp),
@@ -167,7 +167,7 @@ fun TaskDetailScreen(
                         text = stringResource(id = R.string.task_details) + ":",
                         style = TextStyle(
                             fontSize = 20.sp,
-                            color = Color.Black,
+                            color = cTextPrimary(),
                             fontWeight = FontWeight.Bold
                         )
                     )
@@ -175,7 +175,7 @@ fun TaskDetailScreen(
                     Spacer(modifier = Modifier.size(15.dp))
                     Text(
                         text = task.description,
-                        style = TextStyle(fontSize = 18.sp, color = Color.Black)
+                        style = TextStyle(fontSize = 18.sp, color = cTextPrimary())
                     )
                 }
             }
@@ -184,7 +184,7 @@ fun TaskDetailScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        Color(0xFFF5F5F5),
+                        cCard(),
                         shape = RoundedCornerShape(15.dp)
                     )
                     .padding(10.dp),
@@ -195,7 +195,7 @@ fun TaskDetailScreen(
                         text = stringResource(id = R.string.label_assigned_to) + ":",
                         style = TextStyle(
                             fontSize = 20.sp,
-                            color = Color.Black,
+                            color = cTextPrimary(),
                             fontWeight = FontWeight.Bold
                         )
                     )
@@ -227,7 +227,7 @@ fun TaskDetailScreen(
                         Text(
                             text = task.member.name + " " + task.member.surname,
                             fontSize = 18.sp,
-                            color = Color.Black,
+                            color = cTextPrimary(),
                             fontWeight = FontWeight.Bold
                         )
                     }
@@ -238,7 +238,7 @@ fun TaskDetailScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        Color(0xFFF5F5F5),
+                        cCard(),
                         shape = RoundedCornerShape(15.dp)
                     )
                     .padding(10.dp),
@@ -249,7 +249,7 @@ fun TaskDetailScreen(
                         text = stringResource(id = R.string.label_assigned_on) + ":",
                         style = TextStyle(
                             fontSize = 20.sp,
-                            color = Color.Black,
+                            color = cTextPrimary(),
                             fontWeight = FontWeight.Bold
                         )
                     )
@@ -264,7 +264,7 @@ fun TaskDetailScreen(
                     } catch (e: Exception) { task.createdAt.substring(0, 10) }
                     Text(
                         text = createdDate,
-                        style = TextStyle(fontSize = 18.sp, color = Color.Black)
+                        style = TextStyle(fontSize = 18.sp, color = cTextPrimary())
                     )
                 }
             }
@@ -273,7 +273,7 @@ fun TaskDetailScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        Color(0xFFF5F5F5),
+                        cCard(),
                         shape = RoundedCornerShape(15.dp)
                     )
                     .padding(10.dp),
@@ -284,7 +284,7 @@ fun TaskDetailScreen(
                         text = stringResource(id = R.string.label_due_on) + ":",
                         style = TextStyle(
                             fontSize = 20.sp,
-                            color = Color.Black,
+                            color = cTextPrimary(),
                             fontWeight = FontWeight.Bold
                         )
                     )
@@ -311,7 +311,7 @@ fun TaskDetailScreen(
                     } catch (e: Exception) { task.dueDate.replace("T", " ").substring(0, 16) }
                     Text(
                         text = dueDate,
-                        style = TextStyle(fontSize = 18.sp, color = Color.Black)
+                        style = TextStyle(fontSize = 18.sp, color = cTextPrimary())
                     )
                 }
             }
@@ -323,7 +323,7 @@ fun TaskDetailScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        Color(0xFFF5F5F5),
+                        cCard(),
                         shape = RoundedCornerShape(15.dp)
                     )
                     .padding(10.dp)
@@ -333,7 +333,7 @@ fun TaskDetailScreen(
                         text = "Comentarios",
                         style = TextStyle(
                             fontSize = 20.sp,
-                            color = Color.Black,
+                            color = cTextPrimary(),
                             fontWeight = FontWeight.Bold
                         )
                     )
@@ -357,7 +357,7 @@ fun TaskDetailScreen(
                                 text = "No hay comentarios aún",
                                 style = TextStyle(
                                     fontSize = 16.sp,
-                                    color = Color.Gray,
+                                    color = cTextMuted(),
                                     fontWeight = FontWeight.Normal
                                 ),
                                 modifier = Modifier.padding(vertical = 10.dp)
@@ -439,7 +439,7 @@ fun TaskDetailScreen(
                                                 text = comment.description,
                                                 style = TextStyle(
                                                     fontSize = 14.sp,
-                                                    color = Color.Black
+                                                    color = cTextPrimary()
                                                 )
                                             )
                                         }

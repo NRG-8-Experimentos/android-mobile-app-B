@@ -13,7 +13,7 @@ val Light_OnSurface     = Color(0xFF1F2937)
 val Light_Outline       = Color(0xFFE0E0E0)
 
 // — Dark (igual al dark web)
-val Dark_Primary        = Color(0xFF1A4E85)
+val Dark_Primary        = Color(0xFFFFFFFF)
 val Dark_Secondary      = Color(0xFF4A90E2)
 val Dark_Background     = Color(0xFF0B1220)
 val Dark_Surface        = Color(0xFF111827)

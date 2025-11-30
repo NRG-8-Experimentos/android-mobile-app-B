@@ -52,7 +52,7 @@ import androidx.compose.material3.MaterialTheme
 fun Login(nav: NavHostController) {
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF)
+        containerColor = MaterialTheme.colorScheme.background
     ){
         innerPadding -> LoginScreen(modifier =Modifier.padding(innerPadding), nav)
     }
@@ -135,12 +135,12 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
             text = "SynHub",
             fontSize = 70.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF1A4E85),
+            color = cPrimary(),
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(bottom = 20.dp)
         )
         Image(
-            painter = painterResource(id = R.drawable.synhub_logo),
+            painter = painterResource(id = R.drawable.synhub_logo_transparent),
             contentDescription = null,
             modifier = Modifier
                 .height(200.dp)
@@ -148,7 +148,7 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
         Text(
             text = stringResource(id = R.string.login_message),
             fontSize = 20.sp,
-            color = Color(0xFF000000),
+            color = cTextPrimary(),
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
@@ -162,7 +162,7 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
             leadingIcon = {
                 Icon(
                     imageVector = personSVG,
-                    tint = Color.Gray,
+                    tint = cTextMuted(),
                     contentDescription = ""
                 )
             },
@@ -170,8 +170,8 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
                 keyboardType = KeyboardType.Text
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {txtUser=it}
@@ -194,8 +194,8 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
                 keyboardType = KeyboardType.Password
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             visualTransformation = PasswordVisualTransformation(),
@@ -218,7 +218,7 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
         }
 
         ElevatedButton(
-            colors = ButtonDefaults.buttonColors(Color(0xFFFFFFFF)),
+            colors = ButtonDefaults.buttonColors(cSurface()),
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier,
             onClick = {
@@ -227,7 +227,7 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
         ) {
             Text(
                 text = stringResource(id = R.string.sign_up), fontSize = 20.sp,
-                color = Color.Black, fontWeight = FontWeight.Bold
+                color = cTextPrimary(), fontWeight = FontWeight.Bold
             )
 
         }

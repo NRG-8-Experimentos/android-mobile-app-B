@@ -51,7 +51,7 @@ import androidx.compose.material3.MaterialTheme
 fun Register(nav: NavHostController) {
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF)
+        containerColor = MaterialTheme.colorScheme.background
     ){
             innerPadding -> RegisterScreen(modifier =Modifier.padding(innerPadding), nav)
     }
@@ -101,7 +101,7 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
         Text(
             text = stringResource(id = R.string.register_title),
             fontSize = 60.sp,
-            color = Color(0xFF000000),
+            color = cTextPrimary(),
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(bottom = 20.dp)
@@ -126,8 +126,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
                     keyboardType = KeyboardType.Text
                 ),
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFFF3F3F3),
-                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = cSurface(),
+                    unfocusedContainerColor = cSurface(),
                     cursorColor = Color.Cyan
                 ),
                 onValueChange = { txtName = it }
@@ -150,8 +150,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
                     keyboardType = KeyboardType.Text
                 ),
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFFF3F3F3),
-                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = cSurface(),
+                    unfocusedContainerColor = cSurface(),
                     cursorColor = Color.Cyan
                 ),
                 onValueChange = { txtSurname = it }
@@ -175,8 +175,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
                 keyboardType = KeyboardType.Text
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = { txtUser = it }
@@ -198,8 +198,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
                 keyboardType = KeyboardType.Email
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {
@@ -230,8 +230,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
                 keyboardType = KeyboardType.Text
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {
@@ -263,8 +263,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
             ),
             visualTransformation = PasswordVisualTransformation(),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = { txtPass1 = it; passwordError = null }
@@ -287,8 +287,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
             ),
             visualTransformation = PasswordVisualTransformation(),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = { txtPass2 = it; passwordError = null },

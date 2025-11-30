@@ -684,7 +684,7 @@ fun KanbanBoard(columns: List<KanbanColumn>) {
                     modifier = Modifier.size(48.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                Text("No hay tareas disponibles", color = Color.Gray)
+                Text("No hay tareas disponibles", color = cTextMuted())
             }
         }
         return
@@ -715,7 +715,7 @@ fun KanbanColumnCard(column: KanbanColumn) {
         modifier = Modifier.width(300.dp),
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
     ) {
         Column(modifier = Modifier.fillMaxHeight()) {
             // Header
@@ -811,7 +811,7 @@ fun TaskCard(task: TaskResponse, onClick: (TaskResponse) -> Unit) {
             .fillMaxWidth()
             .clickable { onClick(task) },
         shape = RoundedCornerShape(10.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFF0F6FF)),
+        colors = CardDefaults.cardColors(containerColor = cCard()),
         elevation = CardDefaults.cardElevation(2.dp)
     ) {
         Column(
@@ -844,7 +844,7 @@ fun TaskCard(task: TaskResponse, onClick: (TaskResponse) -> Unit) {
             Text(
                 text = task.description,
                 fontSize = 13.sp,
-                color = Color.Gray,
+                color = cTextMuted(),
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 lineHeight = 18.sp
@@ -876,7 +876,7 @@ fun TaskCard(task: TaskResponse, onClick: (TaskResponse) -> Unit) {
                 Text(
                     text = formatDate(task.dueDate),
                     fontSize = 12.sp,
-                    color = Color.Gray,
+                    color = cTextMuted(),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -945,7 +945,7 @@ fun TaskDetailsDialog(task: TaskResponse, onDismiss: () -> Unit) {
                     Text(
                         text = if (task.description.isNotEmpty()) task.description else "Sin descripción",
                         fontSize = 15.sp,
-                        color = Color.Black.copy(alpha = 0.87f),
+                        color = cTextPrimary(),
                         lineHeight = 22.sp
                     )
                     Spacer(modifier = Modifier.height(20.dp))
@@ -964,9 +964,9 @@ fun TaskDetailsDialog(task: TaskResponse, onDismiss: () -> Unit) {
                             .padding(12.dp)
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(Icons.Filled.Info, contentDescription = null, tint = BluePrimary(), modifier = Modifier.size(18.dp)) // Changed from Label
+                            Icon(Icons.Filled.Info, contentDescription = null, tint = Color(0xFF1A4E85), modifier = Modifier.size(18.dp)) // Changed from Label
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("ID: ${task.id}", fontSize = 13.sp, color = BluePrimary(), fontWeight = FontWeight.SemiBold)
+                            Text("ID: ${task.id}", fontSize = 13.sp, color = Color(0xFF1A4E85), fontWeight = FontWeight.SemiBold)
                         }
                     }
                 }
@@ -978,7 +978,7 @@ fun TaskDetailsDialog(task: TaskResponse, onDismiss: () -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp, vertical = 20.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = BluePrimary()),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1A4E85)),
                 shape = RoundedCornerShape(10.dp)
             ) {
                 Text("Cerrar", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
@@ -1006,7 +1006,7 @@ fun DetailRow(icon: ImageVector, label: String, value: String, color: Color) {
         Column(modifier = Modifier.weight(1f)) {
             Text(label, fontSize = 12.sp, color = Color.Gray)
             Spacer(modifier = Modifier.height(2.dp))
-            Text(value, fontSize = 15.sp, fontWeight = FontWeight.SemiBold, color = Color.Black.copy(alpha = 0.87f))
+            Text(value, fontSize = 15.sp, fontWeight = FontWeight.SemiBold, color = cTextPrimary())
         }
     }
 }
