@@ -369,8 +369,8 @@ fun AnalyticsOverviewSection(analyticsState: AnalyticsState) {
             .fillMaxWidth()
             .padding(horizontal = 2.dp, vertical = 2.dp),
         shape = RoundedCornerShape(18.dp),
-        elevation = androidx.compose.material3.CardDefaults.cardElevation(8.dp),
-        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = cCard())
+        elevation = CardDefaults.cardElevation(8.dp),
+        colors = CardDefaults.cardColors(containerColor = cCard())
     ) {
         Column(
             modifier = Modifier
@@ -401,8 +401,8 @@ fun AnalyticsDistributionSection(
             .fillMaxWidth()
             .padding(horizontal = 2.dp, vertical = 2.dp),
         shape = RoundedCornerShape(18.dp),
-        elevation = androidx.compose.material3.CardDefaults.cardElevation(8.dp),
-        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = CardBackground())
+        elevation = CardDefaults.cardElevation(8.dp),
+        colors = CardDefaults.cardColors(containerColor = CardBackground())
     ) {
         Column(
             modifier = Modifier
@@ -523,8 +523,8 @@ fun AnalyticsCompletionTimeSection(
             .fillMaxWidth()
             .padding(horizontal = 2.dp, vertical = 2.dp),
         shape = RoundedCornerShape(18.dp),
-        elevation = androidx.compose.material3.CardDefaults.cardElevation(8.dp),
-        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = CardBackground())
+        elevation = CardDefaults.cardElevation(8.dp),
+        colors = CardDefaults.cardColors(containerColor = CardBackground())
     ) {
         Column(
             modifier = Modifier
@@ -601,8 +601,8 @@ fun AnalyticsRescheduledSection(
             .fillMaxWidth()
             .padding(horizontal = 2.dp, vertical = 2.dp),
         shape = RoundedCornerShape(18.dp),
-        elevation = androidx.compose.material3.CardDefaults.cardElevation(8.dp),
-        colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = CardBackground())
+        elevation = CardDefaults.cardElevation(8.dp),
+        colors = CardDefaults.cardColors(containerColor = CardBackground())
     ) {
         Column(
             modifier = Modifier
@@ -828,7 +828,7 @@ fun TaskCard(task: TaskResponse, onClick: (TaskResponse) -> Unit) {
                     text = task.title,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 15.sp,
-                    color = BluePrimary,
+                    color = BluePrimary(),
                     modifier = Modifier.weight(1f)
                 )
                 Icon(
@@ -935,7 +935,7 @@ fun TaskDetailsDialog(task: TaskResponse, onDismiss: () -> Unit) {
                 Column(modifier = Modifier.padding(horizontal = 20.dp)) {
                     Text("Título", fontSize = 12.sp, color = Color.Gray, fontWeight = FontWeight.SemiBold)
                     Spacer(modifier = Modifier.height(6.dp))
-                    Text(task.title, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = BluePrimary)
+                    Text(task.title, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = BluePrimary())
                     Spacer(modifier = Modifier.height(16.dp))
                     HorizontalDivider()
                     Spacer(modifier = Modifier.height(16.dp))
@@ -964,9 +964,9 @@ fun TaskDetailsDialog(task: TaskResponse, onDismiss: () -> Unit) {
                             .padding(12.dp)
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(Icons.Filled.Info, contentDescription = null, tint = BluePrimary, modifier = Modifier.size(18.dp)) // Changed from Label
+                            Icon(Icons.Filled.Info, contentDescription = null, tint = BluePrimary(), modifier = Modifier.size(18.dp)) // Changed from Label
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("ID: ${task.id}", fontSize = 13.sp, color = BluePrimary, fontWeight = FontWeight.SemiBold)
+                            Text("ID: ${task.id}", fontSize = 13.sp, color = BluePrimary(), fontWeight = FontWeight.SemiBold)
                         }
                     }
                 }
@@ -978,7 +978,7 @@ fun TaskDetailsDialog(task: TaskResponse, onDismiss: () -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp, vertical = 20.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = BluePrimary),
+                colors = ButtonDefaults.buttonColors(containerColor = BluePrimary()),
                 shape = RoundedCornerShape(10.dp)
             ) {
                 Text("Cerrar", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
@@ -1027,6 +1027,7 @@ fun getIconForColumn(iconName: String): ImageVector {
     }
 }
 
+@Composable
 fun getStatusColor(status: String): Color {
     return when (status.uppercase()) {
         "ON_HOLD" -> AccentOrange
@@ -1034,7 +1035,7 @@ fun getStatusColor(status: String): Color {
         "COMPLETED" -> AccentGreen
         "DONE" -> Color(0xFF14b8a6)
         "EXPIRED" -> AccentRed
-        else -> BluePrimary
+        else -> BluePrimary()
     }
 }
 
@@ -1070,16 +1071,16 @@ fun AnalyticsKanbanSection(analyticsState: AnalyticsState) {
             .padding(horizontal = 2.dp, vertical = 2.dp),
         shape = RoundedCornerShape(18.dp),
         elevation = CardDefaults.cardElevation(8.dp),
-        colors = CardDefaults.cardColors(containerColor = CardBackground)
+        colors = CardDefaults.cardColors(containerColor = CardBackground())
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(CardLight, RoundedCornerShape(12.dp))
+                .background(CardLight(), RoundedCornerShape(12.dp))
                 .padding(16.dp)
         ) {
             SectionTitle("Tablero de Tareas", icon = {
-                Icon(Icons.Filled.Info, contentDescription = null, tint = BluePrimary)
+                Icon(Icons.Filled.Info, contentDescription = null, tint = BluePrimary())
             })
             Spacer(modifier = Modifier.height(8.dp))
             KanbanBoard(columns = analyticsState.kanbanColumns)
