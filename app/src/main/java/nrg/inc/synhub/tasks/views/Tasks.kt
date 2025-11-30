@@ -64,6 +64,8 @@ import com.example.synhub.tasks.viewmodel.TaskViewModel
 import nrg.inc.synhub.R
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -71,7 +73,7 @@ fun Tasks(nav: NavHostController) {
     var showHelpDialog by remember { mutableStateOf(false) }
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
@@ -89,7 +91,7 @@ fun Tasks(nav: NavHostController) {
                             Icon(
                                 imageVector = Icons.Default.Info,
                                 contentDescription = stringResource(id = R.string.help),
-                                tint = Color(0xFF2C2C2C),
+                                tint = cTextMuted(),
                                 modifier = Modifier.size(24.dp)
                             )
                         }
@@ -189,7 +191,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                     verticalArrangement = Arrangement.spacedBy(20.dp)
                 ){
                     item {
-                        Text(stringResource(id = R.string.pending_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1A4E85))
+                        Text(stringResource(id = R.string.pending_tasks), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = cPrimary())
                     }
                     if(inProgressTasks.isEmpty()){
                         item {
@@ -227,7 +229,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                     ),
                                 shape = RoundedCornerShape(10.dp),
                                 colors = cardColors(
-                                    containerColor = Color(0xFFF5F5F5)
+                                    containerColor = cCard()
                                 ),
                                 onClick = {
                                     nav.navigate("Tasks/Detail/${task.id}")
@@ -236,7 +238,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                 Column(
                                     verticalArrangement = Arrangement.spacedBy(10.dp),
                                     modifier = Modifier.padding(10.dp)
-                                        .background(Color(0xFFF5F5F5))
+                                        .background(cCard())
                                 ) {
                                     Row (
                                         verticalAlignment = Alignment.CenterVertically,
@@ -264,7 +266,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                         Text(
                                             text = task.member.name + " " + task.member.surname,
                                             fontSize = 20.sp,
-                                            color = Color.Black,
+                                            color = cTextPrimary(),
                                             fontWeight = FontWeight.Bold
                                         )
                                     }
@@ -272,7 +274,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                     Text(
                                         text=task.title,
                                         fontSize = 15.sp,
-                                        color = Color.Black
+                                        color = cTextPrimary()
                                     )
                                     HorizontalDivider(color = Color.Black)
                                     Card(
@@ -285,7 +287,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                             ),
                                         shape = RoundedCornerShape(10.dp),
                                         colors = cardColors(
-                                            containerColor = Color(0xFFFFFFFF)
+                                            containerColor = MaterialTheme.colorScheme.background
                                         ),
                                     ){
                                         Column (
@@ -296,7 +298,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                             Text(
                                                 text=task.description,
                                                 fontSize = 15.sp,
-                                                color = Color.Black
+                                                color = cTextPrimary()
                                             )
                                         }
                                     }
@@ -330,7 +332,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                         Text(
                                             text = "$createdDate - $dueDate",
                                             fontSize = 15.sp,
-                                            color = Color.Black
+                                            color = cTextPrimary()
                                         )
                                     }
                                     Column (
@@ -425,7 +427,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                     ),
                                 shape = RoundedCornerShape(10.dp),
                                 colors = cardColors(
-                                    containerColor = Color(0xFFF5F5F5)
+                                    containerColor = cCard()
                                 ),
                                 onClick = {
                                     nav.navigate("Tasks/Detail/${task.id}")
@@ -434,7 +436,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                 Column(
                                     verticalArrangement = Arrangement.spacedBy(10.dp),
                                     modifier = Modifier.padding(10.dp)
-                                        .background(Color(0xFFF5F5F5))
+                                        .background(cCard())
                                 ) {
                                     Row (
                                         verticalAlignment = Alignment.CenterVertically,
@@ -462,7 +464,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                         Text(
                                             text = task.member.name + " " + task.member.surname,
                                             fontSize = 20.sp,
-                                            color = Color.Black,
+                                            color = cTextPrimary(),
                                             fontWeight = FontWeight.Bold
                                         )
                                     }
@@ -470,7 +472,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                     Text(
                                         text=task.title,
                                         fontSize = 15.sp,
-                                        color = Color.Black
+                                        color = cTextPrimary()
                                     )
                                     HorizontalDivider(color = Color.Black)
                                     Card(
@@ -483,7 +485,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                             ),
                                         shape = RoundedCornerShape(10.dp),
                                         colors = cardColors(
-                                            containerColor = Color(0xFFFFFFFF)
+                                            containerColor = MaterialTheme.colorScheme.background
                                         ),
                                     ){
                                         Column (
@@ -494,7 +496,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                             Text(
                                                 text=task.description,
                                                 fontSize = 15.sp,
-                                                color = Color.Black
+                                                color = cTextPrimary()
                                             )
                                         }
                                     }
@@ -528,7 +530,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                         Text(
                                             text = "$createdDate - $dueDate",
                                             fontSize = 15.sp,
-                                            color = Color.Black
+                                            color = cTextPrimary()
                                         )
                                     }
                                 }
@@ -574,7 +576,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                     ),
                                 shape = RoundedCornerShape(10.dp),
                                 colors = cardColors(
-                                    containerColor = Color(0xFFF5F5F5)
+                                    containerColor = cCard()
                                 ),
                                 onClick = {
                                     nav.navigate("Tasks/Detail/${task.id}")
@@ -583,7 +585,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                 Column(
                                     verticalArrangement = Arrangement.spacedBy(10.dp),
                                     modifier = Modifier.padding(10.dp)
-                                        .background(Color(0xFFF5F5F5))
+                                        .background(cCard())
                                 ) {
                                     Row (
                                         verticalAlignment = Alignment.CenterVertically,
@@ -611,7 +613,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                         Text(
                                             text = task.member.name + " " + task.member.surname,
                                             fontSize = 20.sp,
-                                            color = Color.Black,
+                                            color = cTextPrimary(),
                                             fontWeight = FontWeight.Bold
                                         )
                                     }
@@ -619,7 +621,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                     Text(
                                         text=task.title,
                                         fontSize = 15.sp,
-                                        color = Color.Black
+                                        color = cTextPrimary()
                                     )
                                     HorizontalDivider(color = Color.Black)
                                     Card(
@@ -632,7 +634,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                             ),
                                         shape = RoundedCornerShape(10.dp),
                                         colors = cardColors(
-                                            containerColor = Color(0xFFFFFFFF)
+                                            containerColor = MaterialTheme.colorScheme.background
                                         ),
                                     ){
                                         Column (
@@ -643,7 +645,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                             Text(
                                                 text=task.description,
                                                 fontSize = 15.sp,
-                                                color = Color.Black
+                                                color = cTextPrimary()
                                             )
                                         }
                                     }
@@ -677,7 +679,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                         Text(
                                             text = "$createdDate - $dueDate",
                                             fontSize = 15.sp,
-                                            color = Color.Black
+                                            color = cTextPrimary()
                                         )
                                     }
                                 }
@@ -723,7 +725,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                     ),
                                 shape = RoundedCornerShape(10.dp),
                                 colors = cardColors(
-                                    containerColor = Color(0xFFF5F5F5)
+                                    containerColor = cCard()
                                 ),
                                 onClick = {
                                     nav.navigate("Tasks/Detail/${task.id}")
@@ -732,7 +734,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                 Column(
                                     verticalArrangement = Arrangement.spacedBy(10.dp),
                                     modifier = Modifier.padding(10.dp)
-                                        .background(Color(0xFFF5F5F5))
+                                        .background(cCard())
                                 ) {
                                     Row (
                                         verticalAlignment = Alignment.CenterVertically,
@@ -760,7 +762,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                         Text(
                                             text = task.member.name + " " + task.member.surname,
                                             fontSize = 20.sp,
-                                            color = Color.Black,
+                                            color = cTextPrimary(),
                                             fontWeight = FontWeight.Bold
                                         )
                                     }
@@ -768,7 +770,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                     Text(
                                         text=task.title,
                                         fontSize = 15.sp,
-                                        color = Color.Black
+                                        color = cTextPrimary()
                                     )
                                     HorizontalDivider(color = Color.Black)
                                     Card(
@@ -781,7 +783,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                             ),
                                         shape = RoundedCornerShape(10.dp),
                                         colors = cardColors(
-                                            containerColor = Color(0xFFFFFFFF)
+                                            containerColor = MaterialTheme.colorScheme.background
                                         ),
                                     ){
                                         Column (
@@ -792,7 +794,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                             Text(
                                                 text=task.description,
                                                 fontSize = 15.sp,
-                                                color = Color.Black
+                                                color = cTextPrimary()
                                             )
                                         }
                                     }
@@ -826,7 +828,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                         Text(
                                             text = "$createdDate - $dueDate",
                                             fontSize = 15.sp,
-                                            color = Color.Black
+                                            color = cTextPrimary()
                                         )
                                     }
                                 }
@@ -872,7 +874,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                     ),
                                 shape = RoundedCornerShape(10.dp),
                                 colors = cardColors(
-                                    containerColor = Color(0xFFF5F5F5)
+                                    containerColor = cCard()
                                 ),
                                 onClick = {
                                     nav.navigate("Tasks/Detail/${task.id}")
@@ -881,7 +883,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                 Column(
                                     verticalArrangement = Arrangement.spacedBy(10.dp),
                                     modifier = Modifier.padding(10.dp)
-                                        .background(Color(0xFFF5F5F5))
+                                        .background(cCard())
                                 ) {
                                     Row (
                                         verticalAlignment = Alignment.CenterVertically,
@@ -909,7 +911,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                         Text(
                                             text = task.member.name + " " + task.member.surname,
                                             fontSize = 20.sp,
-                                            color = Color.Black,
+                                            color = cTextPrimary(),
                                             fontWeight = FontWeight.Bold
                                         )
                                     }
@@ -917,7 +919,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                     Text(
                                         text=task.title,
                                         fontSize = 15.sp,
-                                        color = Color.Black
+                                        color = cTextPrimary()
                                     )
                                     HorizontalDivider(color = Color.Black)
                                     Card(
@@ -930,7 +932,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                             ),
                                         shape = RoundedCornerShape(10.dp),
                                         colors = cardColors(
-                                            containerColor = Color(0xFFFFFFFF)
+                                            containerColor = MaterialTheme.colorScheme.background
                                         ),
                                     ){
                                         Column (
@@ -941,7 +943,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                             Text(
                                                 text=task.description,
                                                 fontSize = 15.sp,
-                                                color = Color.Black
+                                                color = cTextPrimary()
                                             )
                                         }
                                     }
@@ -975,7 +977,7 @@ fun TaskScreen(modifier: Modifier, nav: NavHostController) {
                                         Text(
                                             text = "$createdDate - $dueDate",
                                             fontSize = 15.sp,
-                                            color = Color.Black
+                                            color = cTextPrimary()
                                         )
                                     }
                                     Column (

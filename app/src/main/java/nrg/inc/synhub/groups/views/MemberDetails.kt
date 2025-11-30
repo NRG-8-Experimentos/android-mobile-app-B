@@ -67,6 +67,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import nrg.inc.synhub.R
 import java.time.format.DateTimeFormatter
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -85,7 +87,7 @@ fun MemberDetails(nav: NavHostController, memberId: String?) {
 
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
@@ -103,7 +105,7 @@ fun MemberDetails(nav: NavHostController, memberId: String?) {
                             Icon(
                                 imageVector = Icons.Default.Info,
                                 contentDescription = stringResource(id = R.string.help),
-                                tint = Color(0xFF2C2C2C),
+                                tint = cTextMuted(),
                                 modifier = Modifier.size(24.dp)
                             )
                         }
@@ -239,7 +241,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                     ),
                                 shape = RoundedCornerShape(10.dp),
                                 colors = cardColors(
-                                    containerColor = Color(0xFFF5F5F5)
+                                    containerColor = cCard()
                                 ),
                                 onClick = {
                                     nav.navigate("Tasks/Detail/${task.id}")
@@ -249,12 +251,12 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                     verticalArrangement = Arrangement.spacedBy(10.dp),
                                     modifier = Modifier
                                         .padding(10.dp)
-                                        .background(Color(0xFFF5F5F5))
+                                        .background(cCard())
                                 ) {
                                     Text(
                                         text = task.title,
                                         fontSize = 15.sp,
-                                        color = Color.Black
+                                        color = cTextPrimary()
                                     )
                                     HorizontalDivider(color = Color.Black)
                                     Card(
@@ -267,7 +269,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                             ),
                                         shape = RoundedCornerShape(10.dp),
                                         colors = cardColors(
-                                            containerColor = Color(0xFFFFFFFF)
+                                            containerColor = MaterialTheme.colorScheme.background
                                         ),
                                     ) {
                                         Column(
@@ -278,7 +280,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                             Text(
                                                 text = task.description,
                                                 fontSize = 15.sp,
-                                                color = Color.Black
+                                                color = cTextPrimary()
                                             )
                                         }
                                     }
@@ -315,7 +317,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                         Text(
                                             text = "$createdDate - $dueDate",
                                             fontSize = 15.sp,
-                                            color = Color.Black
+                                            color = cTextPrimary()
                                         )
                                     }
                                     Column(
@@ -410,7 +412,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                     ),
                                 shape = RoundedCornerShape(10.dp),
                                 colors = cardColors(
-                                    containerColor = Color(0xFFF5F5F5)
+                                    containerColor = cCard()
                                 ),
                                 onClick = {
                                     nav.navigate("Tasks/Detail/${task.id}")
@@ -420,12 +422,12 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                     verticalArrangement = Arrangement.spacedBy(10.dp),
                                     modifier = Modifier
                                         .padding(10.dp)
-                                        .background(Color(0xFFF5F5F5))
+                                        .background(cCard())
                                 ) {
                                     Text(
                                         text = task.title,
                                         fontSize = 15.sp,
-                                        color = Color.Black
+                                        color = cTextPrimary()
                                     )
                                     HorizontalDivider(color = Color.Black)
                                     Card(
@@ -438,7 +440,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                             ),
                                         shape = RoundedCornerShape(10.dp),
                                         colors = cardColors(
-                                            containerColor = Color(0xFFFFFFFF)
+                                            containerColor = MaterialTheme.colorScheme.background
                                         ),
                                     ) {
                                         Column(
@@ -449,7 +451,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                             Text(
                                                 text = task.description,
                                                 fontSize = 15.sp,
-                                                color = Color.Black
+                                                color = cTextPrimary()
                                             )
                                         }
                                     }
@@ -486,7 +488,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                         Text(
                                             text = "$createdDate - $dueDate",
                                             fontSize = 15.sp,
-                                            color = Color.Black
+                                            color = cTextPrimary()
                                         )
                                     }
                                 }
@@ -532,7 +534,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                     ),
                                 shape = RoundedCornerShape(10.dp),
                                 colors = cardColors(
-                                    containerColor = Color(0xFFF5F5F5)
+                                    containerColor = cCard()
                                 ),
                                 onClick = {
                                     nav.navigate("Tasks/Detail/${task.id}")
@@ -542,12 +544,12 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                     verticalArrangement = Arrangement.spacedBy(10.dp),
                                     modifier = Modifier
                                         .padding(10.dp)
-                                        .background(Color(0xFFF5F5F5))
+                                        .background(cCard())
                                 ) {
                                     Text(
                                         text = task.title,
                                         fontSize = 15.sp,
-                                        color = Color.Black
+                                        color = cTextPrimary()
                                     )
                                     HorizontalDivider(color = Color.Black)
                                     Card(
@@ -560,7 +562,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                             ),
                                         shape = RoundedCornerShape(10.dp),
                                         colors = cardColors(
-                                            containerColor = Color(0xFFFFFFFF)
+                                            containerColor = MaterialTheme.colorScheme.background
                                         ),
                                     ) {
                                         Column(
@@ -571,7 +573,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                             Text(
                                                 text = task.description,
                                                 fontSize = 15.sp,
-                                                color = Color.Black
+                                                color = cTextPrimary()
                                             )
                                         }
                                     }
@@ -608,7 +610,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                         Text(
                                             text = "$createdDate - $dueDate",
                                             fontSize = 15.sp,
-                                            color = Color.Black
+                                            color = cTextPrimary()
                                         )
                                     }
                                 }
@@ -654,7 +656,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                     ),
                                 shape = RoundedCornerShape(10.dp),
                                 colors = cardColors(
-                                    containerColor = Color(0xFFF5F5F5)
+                                    containerColor = cCard()
                                 ),
                                 onClick = {
                                     nav.navigate("Tasks/Detail/${task.id}")
@@ -664,12 +666,12 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                     verticalArrangement = Arrangement.spacedBy(10.dp),
                                     modifier = Modifier
                                         .padding(10.dp)
-                                        .background(Color(0xFFF5F5F5))
+                                        .background(cCard())
                                 ) {
                                     Text(
                                         text = task.title,
                                         fontSize = 15.sp,
-                                        color = Color.Black
+                                        color = cTextPrimary()
                                     )
                                     HorizontalDivider(color = Color.Black)
                                     Card(
@@ -682,7 +684,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                             ),
                                         shape = RoundedCornerShape(10.dp),
                                         colors = cardColors(
-                                            containerColor = Color(0xFFFFFFFF)
+                                            containerColor = MaterialTheme.colorScheme.background
                                         ),
                                     ) {
                                         Column(
@@ -693,7 +695,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                             Text(
                                                 text = task.description,
                                                 fontSize = 15.sp,
-                                                color = Color.Black
+                                                color = cTextPrimary()
                                             )
                                         }
                                     }
@@ -730,7 +732,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                         Text(
                                             text = "$createdDate - $dueDate",
                                             fontSize = 15.sp,
-                                            color = Color.Black
+                                            color = cTextPrimary()
                                         )
                                     }
                                 }
@@ -776,7 +778,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                     ),
                                 shape = RoundedCornerShape(10.dp),
                                 colors = cardColors(
-                                    containerColor = Color(0xFFF5F5F5)
+                                    containerColor = cCard()
                                 ),
                                 onClick = {
                                     nav.navigate("Tasks/Detail/${task.id}")
@@ -786,12 +788,12 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                     verticalArrangement = Arrangement.spacedBy(10.dp),
                                     modifier = Modifier
                                         .padding(10.dp)
-                                        .background(Color(0xFFF5F5F5))
+                                        .background(cCard())
                                 ) {
                                     Text(
                                         text = task.title,
                                         fontSize = 15.sp,
-                                        color = Color.Black
+                                        color = cTextPrimary()
                                     )
                                     HorizontalDivider(color = Color.Black)
                                     Card(
@@ -804,7 +806,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                             ),
                                         shape = RoundedCornerShape(10.dp),
                                         colors = cardColors(
-                                            containerColor = Color(0xFFFFFFFF)
+                                            containerColor = MaterialTheme.colorScheme.background
                                         ),
                                     ) {
                                         Column(
@@ -815,7 +817,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                             Text(
                                                 text = task.description,
                                                 fontSize = 15.sp,
-                                                color = Color.Black
+                                                color = cTextPrimary()
                                             )
                                         }
                                     }
@@ -852,7 +854,7 @@ fun MemberDetailScreen(modifier: Modifier, nav: NavHostController, memberId: Str
                                         Text(
                                             text = "$createdDate - $dueDate",
                                             fontSize = 15.sp,
-                                            color = Color.Black
+                                            color = cTextPrimary()
                                         )
                                     }
                                     Column(

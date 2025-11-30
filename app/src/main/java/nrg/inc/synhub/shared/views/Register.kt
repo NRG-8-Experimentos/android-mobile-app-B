@@ -44,6 +44,8 @@ import com.example.synhub.shared.viewmodel.LogInViewModel
 import com.example.synhub.shared.viewmodel.RegisterViewModel
 import nrg.inc.synhub.R
 import kotlin.math.log
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @Composable
 fun Register(nav: NavHostController) {

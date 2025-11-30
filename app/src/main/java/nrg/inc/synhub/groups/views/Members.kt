@@ -56,6 +56,8 @@ import com.example.synhub.tasks.views.getDividerColor
 import androidx.lifecycle.viewmodel.compose.viewModel
 import nrg.inc.synhub.R
 import java.time.format.DateTimeFormatter
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -65,7 +67,7 @@ fun Members(nav: NavHostController){
 
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
@@ -83,7 +85,7 @@ fun Members(nav: NavHostController){
                             Icon(
                                 imageVector = Icons.Default.Info,
                                 contentDescription = stringResource(id = R.string.help),
-                                tint = Color(0xFF2C2C2C),
+                                tint = cTextMuted(),
                                 modifier = Modifier.size(24.dp)
                             )
                         }
@@ -167,7 +169,7 @@ fun MembersScreen(modifier: Modifier, nav: NavHostController,
                 Text(
                     text = stringResource(id = R.string.members_title),
                     fontSize = 25.sp,
-                    color = Color(0xFF1A4E85),
+                    color = cPrimary(),
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 LazyColumn (
@@ -189,7 +191,7 @@ fun MembersScreen(modifier: Modifier, nav: NavHostController,
                                 ),
                             shape = RoundedCornerShape(10.dp),
                             colors = cardColors(
-                                containerColor = Color(0xFFF5F5F5)
+                                containerColor = cCard()
                             ),
                             onClick = {
                                 nav.navigate("Group/Member/${member.id}")
@@ -198,7 +200,7 @@ fun MembersScreen(modifier: Modifier, nav: NavHostController,
                             Column(
                                 verticalArrangement = Arrangement.spacedBy(10.dp),
                                 modifier = Modifier.padding(10.dp)
-                                    .background(Color(0xFFF5F5F5))
+                                    .background(cCard())
                             ) {
                                 Row (
                                     verticalAlignment = Alignment.CenterVertically,
@@ -226,7 +228,7 @@ fun MembersScreen(modifier: Modifier, nav: NavHostController,
                                     Text(
                                         text = member.name + " " + member.surname,
                                         fontSize = 20.sp,
-                                        color = Color.Black,
+                                        color = cTextPrimary(),
                                         fontWeight = FontWeight.Bold
                                     )
                                 }
@@ -239,7 +241,7 @@ fun MembersScreen(modifier: Modifier, nav: NavHostController,
                                             clip = true
                                         ),
                                     shape = RoundedCornerShape(10.dp),
-                                    colors = cardColors(containerColor = Color(0xFF1A4E85))
+                                    colors = cardColors(containerColor = cPrimary())
                                 ) {
                                     Column (
                                         modifier = Modifier
@@ -294,7 +296,7 @@ fun MembersScreen(modifier: Modifier, nav: NavHostController,
                                         Text(
                                             text = "$createdDate - $dueDate",
                                             fontSize = 15.sp,
-                                            color = Color.Black
+                                            color = cTextPrimary()
                                         )
                                     }
                                 }

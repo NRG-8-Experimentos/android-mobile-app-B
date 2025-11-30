@@ -58,6 +58,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import nrg.inc.synhub.R
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @Composable
 fun Group(nav: NavHostController) {
@@ -69,7 +71,7 @@ fun Group(nav: NavHostController) {
 
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
@@ -127,7 +129,7 @@ fun GroupScreen(modifier: Modifier, nav: NavHostController) {
                         ) {
                             Card(
                                 shape = RoundedCornerShape(10.dp),
-                                colors = cardColors(containerColor = Color(0xFF4A90E2)),
+                                colors = cardColors(containerColor = cInfoBlu),
                                 modifier = Modifier
                                     .shadow(
                                         elevation = 5.dp,
@@ -204,14 +206,14 @@ fun GroupScreen(modifier: Modifier, nav: NavHostController) {
                                 clip = true
                             ),
                         shape = RoundedCornerShape(10.dp),
-                        colors = cardColors(containerColor = Color(0xFFF5F5F5))
+                        colors = cardColors(containerColor = cCard())
                     ) {
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(20.dp),
                             shape = RoundedCornerShape(10.dp),
-                            colors = cardColors(containerColor = Color.White)
+                            colors = cardColors(containerColor = cSurface())
                         ) {
                             LazyColumn(
                                 contentPadding = PaddingValues(5.dp),
@@ -255,7 +257,7 @@ fun GroupScreen(modifier: Modifier, nav: NavHostController) {
                                             Text(
                                                 text = member.username,
                                                 fontSize = 14.sp,
-                                                color = Color.Gray
+                                                color = cTextMuted()
                                             )
                                         }
                                         IconButton(
@@ -336,7 +338,7 @@ fun NoGroup(nav: NavHostController){
                 Text(
                     text = stringResource(id = R.string.no_group),
                     fontSize = 25.sp,
-                    color = Color(0xFFFFFFFF)
+                    color = Color.White
                 )
                 ElevatedButton(
                     colors = ButtonDefaults.buttonColors(Color(0xFF4A90E2)),

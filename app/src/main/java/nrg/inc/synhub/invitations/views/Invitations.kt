@@ -49,12 +49,14 @@ import com.example.synhub.shared.components.TopBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import nrg.inc.synhub.R
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @Composable
 fun Invitations(nav: NavHostController) {
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
@@ -101,7 +103,7 @@ fun InvitationsScreen(modifier: Modifier, nav: NavHostController) {
                             ),
                         shape = RoundedCornerShape(10.dp),
                         colors = cardColors(
-                            containerColor = Color(0xFFF5F5F5)
+                            containerColor = MaterialTheme.colorScheme.background
                         ),
                     ){
                         Column(

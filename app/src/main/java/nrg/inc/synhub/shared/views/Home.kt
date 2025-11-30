@@ -59,6 +59,8 @@ import com.example.synhub.tasks.viewmodel.TaskViewModel
 import com.example.synhub.tasks.views.NoTasks
 import kotlinx.coroutines.launch
 import nrg.inc.synhub.R
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @Composable
 fun Home(nav: NavHostController, homeViewModel: HomeViewModel = HomeViewModel()) {
@@ -85,7 +87,7 @@ fun Home(nav: NavHostController, homeViewModel: HomeViewModel = HomeViewModel())
     ) {
         Scaffold (
             modifier = Modifier.fillMaxSize(),
-            containerColor = Color(0xFFFFFFFF),
+            containerColor = MaterialTheme.colorScheme.background,
             topBar = {
                 TopBar(
                     function = {
@@ -160,7 +162,7 @@ fun HomeScreen(modifier: Modifier, nav: NavHostController) {
                                     .fillMaxWidth(),
                                 shape = RoundedCornerShape(10.dp),
                                 colors = cardColors(
-                                    containerColor = Color(0xFFF5F5F5)
+                                    containerColor = cCard()
                                 ),
                                 elevation = CardDefaults.cardElevation(5.dp),
                                 onClick = {
@@ -252,7 +254,7 @@ fun HomeScreen(modifier: Modifier, nav: NavHostController) {
                                 .fillMaxWidth(),
                             shape = RoundedCornerShape(10.dp),
                             colors = cardColors(
-                                containerColor = Color(0xFFF5F5F5)
+                                containerColor = cCard()
                             ),
                             elevation = CardDefaults.cardElevation(5.dp),
                             onClick = {
@@ -285,13 +287,13 @@ fun HomeScreen(modifier: Modifier, nav: NavHostController) {
                                                     text = "${task.member.name} ${task.member.surname}",
                                                     fontSize = 18.sp,
                                                     fontWeight = FontWeight.Bold,
-                                                    color = Color.White
+                                                    color = cSurface()
                                                 )
                                                 HorizontalDivider(color = Color.White, thickness = 2.dp)
                                                 Spacer(modifier = Modifier.height(10.dp))
                                                 Card (
                                                     colors = cardColors(
-                                                        containerColor = Color.White
+                                                        containerColor = cSurface()
                                                     ),
                                                 ){
                                                     Column(
@@ -340,7 +342,7 @@ fun HomeScreen(modifier: Modifier, nav: NavHostController) {
                                 .fillMaxWidth(),
                             shape = RoundedCornerShape(10.dp),
                             colors = cardColors(
-                                containerColor = Color(0xFFF5F5F5)
+                                containerColor = cCard()
                             ),
                             elevation = CardDefaults.cardElevation(5.dp),
                             onClick = {
@@ -377,7 +379,7 @@ fun HomeScreen(modifier: Modifier, nav: NavHostController) {
                                                 Spacer(modifier = Modifier.height(10.dp))
                                                 Card(
                                                     colors = cardColors(
-                                                        containerColor = Color.White
+                                                        containerColor = cSurface()
                                                     ),
                                                 ) {
                                                     Column(
@@ -425,7 +427,7 @@ fun HomeScreen(modifier: Modifier, nav: NavHostController) {
                                 .fillMaxWidth(),
                             shape = RoundedCornerShape(10.dp),
                             colors = cardColors(
-                                containerColor = Color(0xFFF5F5F5)
+                                containerColor = cCard()
                             ),
                             elevation = CardDefaults.cardElevation(5.dp),
                             onClick = {
