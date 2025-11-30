@@ -43,6 +43,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -66,11 +67,14 @@ import com.example.synhub.tasks.viewmodel.TaskViewModel
 import com.example.synhub.tasks.views.DatePickerModal
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import nrg.inc.synhub.R
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -84,13 +88,13 @@ fun EditRequestTask(nav: NavHostController, taskId: String?, requestId: String?)
 
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
                     nav.popBackStack()
                 },
-                "Editar Tarea",
+                stringResource(id = R.string.edit_task_title),
                 Icons.AutoMirrored.Filled.ArrowBack
             )
         }
@@ -140,7 +144,7 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
                 value = txtTitle,
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
-                label = { Text(text = "Titulo de la tarea") },
+                label = { Text(text = stringResource(id = R.string.label_task_title)) },
                 placeholder = { Text(text = task.title) },
                 leadingIcon = {
                     Icon(
@@ -153,8 +157,8 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
                     keyboardType = KeyboardType.Email
                 ),
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFFF3F3F3),
-                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = cSurface(),
+                    unfocusedContainerColor = cSurface(),
                     cursorColor = Color.Cyan
                 ),
                 onValueChange = {txtTitle=it}
@@ -163,7 +167,7 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
             OutlinedTextField(
                 value = txtDescription,
                 modifier = Modifier.fillMaxWidth(),
-                label = { Text(text = "Descripción de la tarea") },
+                label = { Text(text = stringResource(id = R.string.description_label)) },
                 placeholder = { Text(text = task.description) },
                 leadingIcon = {
                     Icon(
@@ -176,8 +180,8 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
                     keyboardType = KeyboardType.Email
                 ),
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFFF3F3F3),
-                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = cSurface(),
+                    unfocusedContainerColor = cSurface(),
                     cursorColor = Color.Cyan
                 ),
                 onValueChange = {txtDescription=it}
@@ -198,8 +202,8 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
                     modifier = Modifier
                         .fillMaxWidth()
                         .menuAnchor(),
-                    label = { Text(text = "Integrante") },
-                    placeholder = { Text(text = "Integrante") },
+                    label = { Text(text = stringResource(id = R.string.member_label)) },
+                    placeholder = { Text(text = stringResource(id = R.string.member_placeholder)) },
                     leadingIcon = {
                         Icon(
                             imageVector = personSVG,
@@ -211,8 +215,8 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
                         ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
                     },
                     colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color(0xFFF3F3F3),
-                        unfocusedContainerColor = Color.White,
+                        focusedContainerColor = cSurface(),
+                        unfocusedContainerColor = cSurface(),
                         cursorColor = Color.Cyan
                     )
                 )
@@ -243,14 +247,14 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
             OutlinedTextField(
                 value = txtDueDate.format(formatterLocal),
                 onValueChange = {},
-                label = { Text("Fecha de entrega") },
-                placeholder = { Text("Fecha") },
+                label = { Text(stringResource(id = R.string.label_due_date)) },
+                placeholder = { Text(stringResource(id = R.string.placeholder_due_date)) },
                 readOnly = true,
                 trailingIcon = {
                     IconButton(onClick = { showModal = true }) {
                         Icon(
                             imageVector = calendarSVG,
-                            contentDescription = "Select date"
+                            contentDescription = stringResource(id = R.string.cd_select_date)
                         )
                     }
                 },
@@ -337,7 +341,7 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Guardar", fontSize = 20.sp,
+                        text = stringResource(id = R.string.save), fontSize = 20.sp,
                         color = Color.White, fontWeight = FontWeight.Bold
                     )
 
@@ -357,7 +361,7 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Cancelar", fontSize = 20.sp,
+                        text = stringResource(id = R.string.cancel), fontSize = 20.sp,
                         color = Color.White, fontWeight = FontWeight.Bold
                     )
 
@@ -371,7 +375,7 @@ fun EditRequestTaskScreen(modifier: Modifier = Modifier, nav: NavHostController,
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "Tarea no encontrada",
+                    text = stringResource(id = R.string.task_not_found),
                     style = TextStyle(
                         fontSize = 20.sp,
                         color = Color.Red

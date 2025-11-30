@@ -60,6 +60,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.ui.platform.LocalContext
 import android.app.TimePickerDialog
 import androidx.compose.material3.IconButton
+import androidx.compose.ui.res.stringResource
+import nrg.inc.synhub.R
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -68,19 +70,21 @@ import java.util.Calendar
 import java.util.Locale
 import kotlin.text.format
 import kotlin.text.set
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CreateTask(nav: NavHostController) {
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
                     nav.popBackStack()
                 },
-                "Crear Tarea",
+                stringResource(id = R.string.create_task_title),
                 Icons.AutoMirrored.Filled.ArrowBack
             )
         }
@@ -122,8 +126,8 @@ fun CreateTaskScreen(modifier: Modifier = Modifier, nav: NavHostController
             value = txtTitle,
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Titulo de la tarea") },
-            placeholder = { Text(text = "Titulo") },
+            label = { Text(text = stringResource(id = R.string.label_task_title)) },
+            placeholder = { Text(text = stringResource(id = R.string.placeholder_title)) },
             leadingIcon = {
                 Icon(
                     imageVector = abcSVG,
@@ -135,8 +139,8 @@ fun CreateTaskScreen(modifier: Modifier = Modifier, nav: NavHostController
                 keyboardType = KeyboardType.Text
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {txtTitle=it}
@@ -145,8 +149,8 @@ fun CreateTaskScreen(modifier: Modifier = Modifier, nav: NavHostController
         OutlinedTextField(
             value = txtDescription,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Descripción de la tarea") },
-            placeholder = { Text(text = "Descripción") },
+            label = { Text(text = stringResource(id = R.string.label_description)) },
+            placeholder = { Text(text = stringResource(id = R.string.placeholder_description)) },
             leadingIcon = {
                 Icon(
                     imageVector = keyboardSVG,
@@ -158,8 +162,8 @@ fun CreateTaskScreen(modifier: Modifier = Modifier, nav: NavHostController
                 keyboardType = KeyboardType.Text
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {txtDescription=it}
@@ -181,8 +185,8 @@ fun CreateTaskScreen(modifier: Modifier = Modifier, nav: NavHostController
                 modifier = Modifier
                     .fillMaxWidth()
                     .menuAnchor(),
-                label = { Text(text = "Integrante") },
-                placeholder = { Text(text = "Integrante") },
+                label = { Text(text = stringResource(id = R.string.label_member)) },
+                placeholder = { Text(text = stringResource(id = R.string.placeholder_member)) },
                 leadingIcon = {
                     Icon(
                         imageVector = personSVG,
@@ -194,8 +198,8 @@ fun CreateTaskScreen(modifier: Modifier = Modifier, nav: NavHostController
                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
                 },
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFFF3F3F3),
-                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = cSurface(),
+                    unfocusedContainerColor = cSurface(),
                     cursorColor = Color.Cyan
                 )
             )
@@ -225,14 +229,14 @@ fun CreateTaskScreen(modifier: Modifier = Modifier, nav: NavHostController
         OutlinedTextField(
             value = txtDueDate.format(formatterLocal),
             onValueChange = {},
-            label = { Text("Fecha de entrega") },
-            placeholder = { Text("Fecha") },
+            label = { Text(stringResource(id = R.string.label_due_date)) },
+            placeholder = { Text(stringResource(id = R.string.placeholder_due_date)) },
             readOnly = true,
             trailingIcon = {
                 IconButton(onClick = { showModal = true }) {
                     Icon(
                         imageVector = calendarSVG,
-                        contentDescription = "Select date"
+                        contentDescription = stringResource(id = R.string.cd_select_date)
                     )
                 }
             },
@@ -295,7 +299,7 @@ fun CreateTaskScreen(modifier: Modifier = Modifier, nav: NavHostController
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Guardar", fontSize = 20.sp,
+                    text = stringResource(id = R.string.save), fontSize = 20.sp,
                     color = Color.White, fontWeight = FontWeight.Bold
                 )
 
@@ -315,7 +319,7 @@ fun CreateTaskScreen(modifier: Modifier = Modifier, nav: NavHostController
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Cancelar", fontSize = 20.sp,
+                    text = stringResource(id = R.string.cancel), fontSize = 20.sp,
                     color = Color.White, fontWeight = FontWeight.Bold
                 )
 
@@ -339,12 +343,12 @@ fun DatePickerModal(
                 onDateSelected(datePickerState.selectedDateMillis)
                 onDismiss()
             }) {
-                Text("OK")
+                Text(stringResource(id = R.string.date_picker_ok))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(id = R.string.date_picker_cancel))
             }
         }
     ) {

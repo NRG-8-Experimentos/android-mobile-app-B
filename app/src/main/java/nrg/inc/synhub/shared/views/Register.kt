@@ -25,6 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -41,7 +42,10 @@ import com.example.synhub.shared.icons.mailSVG
 import com.example.synhub.shared.icons.personSVG
 import com.example.synhub.shared.viewmodel.LogInViewModel
 import com.example.synhub.shared.viewmodel.RegisterViewModel
+import nrg.inc.synhub.R
 import kotlin.math.log
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @Composable
 fun Register(nav: NavHostController) {
@@ -82,6 +86,10 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
     val signUpResult by registerViewModel.signUpResult.collectAsState()
     val loginSuccess by logInViewModel.loginSuccess.collectAsState()
 
+    val errorMail = stringResource(id = R.string.error_invalid_email)
+    val errorUrl = stringResource(id = R.string.error_invalid_url)
+    val errorPasswordMismatch = stringResource(id = R.string.error_password_mismatch)
+
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -91,7 +99,7 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         Text(
-            text = "Register",
+            text = stringResource(id = R.string.register_title),
             fontSize = 60.sp,
             color = Color(0xFF000000),
             fontWeight = FontWeight.Bold,
@@ -105,8 +113,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
                 value = txtName,
                 singleLine = true,
                 modifier = Modifier.weight(1f),
-                label = { Text(text = "Nombre") },
-                placeholder = { Text(text = "Nombre") },
+                label = { Text(text = stringResource(id = R.string.name_label)) },
+                placeholder = { Text(text = stringResource(id = R.string.placeholder_name)) },
                 leadingIcon = {
                     Icon(
                         imageVector = abcSVG,
@@ -129,8 +137,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
                 value = txtSurname,
                 singleLine = true,
                 modifier = Modifier.weight(1f),
-                label = { Text(text = "Apellido") },
-                placeholder = { Text(text = "Apellido") },
+                label = { Text(text = stringResource(id = R.string.surname_label)) },
+                placeholder = { Text(text = stringResource(id = R.string.placeholder_surname)) },
                 leadingIcon = {
                     Icon(
                         imageVector = abcSVG,
@@ -154,8 +162,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
             value = txtUser,
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Usuario") },
-            placeholder = { Text(text = "Usuario") },
+            label = { Text(text = stringResource(id = R.string.username_label)) },
+            placeholder = { Text(text = stringResource(id = R.string.placeholder_username)) },
             leadingIcon = {
                 Icon(
                     imageVector = personSVG,
@@ -177,8 +185,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
             value = txtMail,
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Mail") },
-            placeholder = { Text(text = "Mail") },
+            label = { Text(text = stringResource(id = R.string.email_label)) },
+            placeholder = { Text(text = stringResource(id = R.string.placeholder_email)) },
             leadingIcon = {
                 Icon(
                     imageVector = mailSVG,
@@ -209,8 +217,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
             value = txtUrlPfp,
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Url Pfp") },
-            placeholder = { Text(text = "Url Pfp") },
+            label = { Text(text = stringResource(id = R.string.url_pfp_label)) },
+            placeholder = { Text(text = stringResource(id = R.string.placeholder_url_pfp)) },
             leadingIcon = {
                 Icon(
                     imageVector = linkSVG,
@@ -241,8 +249,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
             value = txtPass1,
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Contraseña") },
-            placeholder = { Text(text = "Contraseña") },
+            label = { Text(text = stringResource(id = R.string.password_label)) },
+            placeholder = { Text(text = stringResource(id = R.string.placeholder_password)) },
             leadingIcon = {
                 Icon(
                     imageVector = lockSVG,
@@ -265,8 +273,8 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
             value = txtPass2,
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Contraseña") },
-            placeholder = { Text(text = "Contraseña") },
+            label = { Text(text = stringResource(id = R.string.password_label)) },
+            placeholder = { Text(text = stringResource(id = R.string.placeholder_password)) },
             leadingIcon = {
                 Icon(
                     imageVector = lockSVG,
@@ -302,19 +310,19 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
                 passwordError = null
 
                 if (!isValidEmail(txtMail)) {
-                    emailError = "Correo electrónico no válido"
+                    emailError = errorMail
                     valid = false
                 }
                 if (txtUrlPfp.isNotBlank() && !isValidUrl(txtUrlPfp)) {
-                    urlError = "URL no válida"
+                    urlError = errorUrl
                     valid = false
                 }
                 if (txtPass1 != txtPass2) {
-                    passwordError = "Las contraseñas no coinciden"
+                    passwordError = errorPasswordMismatch
                     valid = false
                 }
                 if (valid) {
-                    Log.d("Register", "Attempting to sign up with user: $txtUser")
+                    //Log.d("Register", "Attempting to sign up with user: $txtUser")
                     registerViewModel.signUp(
                         SignUpRequest(
                             username = txtUser,
@@ -329,7 +337,7 @@ fun RegisterScreen(modifier: Modifier, nav: NavHostController){
             }
         ) {
             Text(
-                text = "Registrarse", fontSize = 20.sp,
+                text = stringResource(id = R.string.sign_up), fontSize = 20.sp,
                 color = Color.White, fontWeight = FontWeight.Bold
             )
         }

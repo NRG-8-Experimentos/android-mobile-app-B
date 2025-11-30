@@ -38,6 +38,7 @@ object RetrofitClient {
             .build()
 
     private val retrofit: Retrofit = Retrofit.Builder()
+        // localhost for emulator: http://10.0.2.2:8080/api/v1/ or https://backend-mm6t.onrender.com/api/v1/
         .baseUrl("http://10.0.2.2:8080/api/v1/")
         .client(client)
         .addConverterFactory(GsonConverterFactory.create())
