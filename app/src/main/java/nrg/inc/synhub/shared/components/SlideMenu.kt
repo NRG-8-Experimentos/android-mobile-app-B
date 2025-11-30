@@ -39,8 +39,9 @@ import nrg.inc.synhub.shared.components.LanguageSwitchingButtons
 
 @Composable
 fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: String) {
-    var gap = 15.dp
-
+    var gap = 10.dp
+    var verticalPad = 0.dp
+    var itemHeight = 50.dp
     Column (
         modifier = Modifier.fillMaxSize()
             .background(Color(0xFF1A4E85)),
@@ -59,7 +60,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
 
         Box(
             modifier = Modifier
-                .size(180.dp)
+                .size(160.dp)
                 .shadow(
                     elevation = 5.dp,
                     shape = CircleShape,
@@ -87,6 +88,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
             verticalArrangement = Arrangement.spacedBy(gap)
         ){
             NavigationDrawerItem(
+                modifier = Modifier.padding(vertical = verticalPad).height(itemHeight),
                 icon = {
                     Icon(
                         groupSVG,
@@ -96,8 +98,8 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                 },
                 label = {
                     Text(text = stringResource(id = R.string.group_title),
-                        fontSize = 17.sp,
-                        modifier = Modifier.padding(16.dp),
+                        fontSize = 15.sp,
+                        modifier = Modifier.padding(horizontal = 16.dp),
                         color = Color.White)
                 },
                 selected = false,
@@ -105,7 +107,9 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                     nav.navigate("Group")
                 }
             )
+
             NavigationDrawerItem(
+                modifier = Modifier.padding(vertical = verticalPad).height(itemHeight),
                 icon = {
                     Icon(
                         invitationSVG,
@@ -115,8 +119,8 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                 },
                 label = {
                     Text(text = stringResource(id = R.string.join_requests_title),
-                        fontSize = 17.sp,
-                        modifier = Modifier.padding(16.dp),
+                        fontSize = 15.sp,
+                        modifier = Modifier.padding(horizontal = 16.dp),
                         color = Color.White)
                 },
                 selected = false,
@@ -125,6 +129,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                 }
             )
             NavigationDrawerItem(
+                modifier = Modifier.padding(vertical = verticalPad).height(itemHeight),
                 icon = {
                     Icon(
                         membersSVG,
@@ -134,8 +139,8 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                 },
                 label = {
                     Text(text = stringResource(id = R.string.members_title),
-                        fontSize = 17.sp,
-                        modifier = Modifier.padding(16.dp),
+                        fontSize = 15.sp,
+                        modifier = Modifier.padding(horizontal = 16.dp),
                         color = Color.White)
                 },
                 selected = false,
@@ -144,6 +149,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                 }
             )
             NavigationDrawerItem(
+                modifier = Modifier.padding(vertical = verticalPad).height(itemHeight),
                 icon = {
                     Icon(
                         tasksSVG,
@@ -153,8 +159,8 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                 },
                 label = {
                     Text(text = stringResource(id = R.string.tasks_title),
-                        fontSize = 17.sp,
-                        modifier = Modifier.padding(16.dp),
+                        fontSize = 15.sp,
+                        modifier = Modifier.padding(horizontal = 16.dp),
                         color = Color.White)
                 },
                 selected = false,
@@ -163,6 +169,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                 }
             )
             NavigationDrawerItem(
+                modifier = Modifier.padding(vertical = verticalPad).height(itemHeight),
                 icon = {
                     Icon(
                         reportsSVG,
@@ -172,8 +179,8 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                 },
                 label = {
                     Text(text = stringResource(id = R.string.statistics_title),
-                        fontSize = 17.sp,
-                        modifier = Modifier.padding(16.dp),
+                        fontSize = 15.sp,
+                        modifier = Modifier.padding(horizontal = 16.dp),
                         color = Color.White)
                 },
                 selected = false,
@@ -185,6 +192,7 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
             // TODO: Add a condition check if user is leader or member.
 
             NavigationDrawerItem(
+                modifier = Modifier.padding(vertical = verticalPad).height(itemHeight),
                 icon = {
                     Icon(
                         requestSVG,
@@ -194,8 +202,8 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                 },
                 label = {
                     Text(text = stringResource(id = R.string.requests_validations_title),
-                        fontSize = 17.sp,
-                        modifier = Modifier.padding(16.dp),
+                        fontSize = 15.sp,
+                        modifier = Modifier.padding(horizontal = 16.dp),
                         color = Color.White)
                 },
                 selected = false,
@@ -220,9 +228,10 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
         Spacer(modifier = Modifier.height(gap))
 
         Column (
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+            verticalArrangement = Arrangement.spacedBy(gap)
         ){
             NavigationDrawerItem(
+                modifier = Modifier.padding(vertical = verticalPad).height(itemHeight),
                 icon = {
                     Icon(
                         logoutSVG,
@@ -232,8 +241,8 @@ fun SlideMenu(nav:NavHostController, name: String, surname: String, imgUrl: Stri
                 },
                 label = {
                     Text(text = stringResource(id = R.string.log_out),
-                        fontSize = 17.sp,
-                        modifier = Modifier.padding(16.dp),
+                        fontSize = 15.sp,
+                        modifier = Modifier.padding(horizontal = 16.dp),
                         color = Color.White)
                 },
                 selected = false,
