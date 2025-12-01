@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -41,14 +42,17 @@ import nrg.inc.synhub.R
 import com.example.synhub.shared.icons.lockSVG
 import com.example.synhub.shared.icons.personSVG
 import com.example.synhub.shared.viewmodel.LogInViewModel
+import nrg.inc.synhub.shared.components.LanguageSwitchingButtons
 import kotlin.math.log
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 
 @Composable
 fun Login(nav: NavHostController) {
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF)
+        containerColor = MaterialTheme.colorScheme.background
     ){
         innerPadding -> LoginScreen(modifier =Modifier.padding(innerPadding), nav)
     }
@@ -66,15 +70,17 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
     var showErrorDialog by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf("") }
 
-    //TO-DO: eliminar prints cuando esté listo
+    val userNotLeader= stringResource(id = R.string.user_not_leader)
+    val incorrectCredentials= stringResource(id = R.string.invalid_credentials)
+
     LaunchedEffect(loginSuccess) {
-        println("LoginScreen: loginSuccess cambió a $loginSuccess")
+        //println("LoginScreen: loginSuccess cambió a $loginSuccess")
         if (loginSuccess == true) {
-            println("LoginScreen: Intentando obtener detalles de líder...")
+            //println("LoginScreen: Intentando obtener detalles de líder...")
             isLeader = loginViewModel.getLeaderDetails()
-            println("LoginScreen: ¿Es líder? $isLeader")
+            //println("LoginScreen: ¿Es líder? $isLeader")
             shouldNavigate = isLeader
-            println("LoginScreen: shouldNavigate actualizado a $shouldNavigate")
+            //println("LoginScreen: shouldNavigate actualizado a $shouldNavigate")
             if (isLeader) {
                 shouldNavigate = false
                 isLeader = false
@@ -87,9 +93,8 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
                 shouldNavigate = false
                 isLeader = false
                 loginViewModel.resetLoginState()
-                println("LoginScreen: Usuario no es líder, estados reiniciados")
-                // TO-DO: Mostrar dialog de error o mensaje al usuario
-                errorMessage = "Tu usuario no es un líder."
+                //println("LoginScreen: Usuario no es líder, estados reiniciados")
+                errorMessage = userNotLeader
                 showErrorDialog = true
             }
             // Reinicia el estado de loginSuccess para permitir nuevos intentos
@@ -98,23 +103,21 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
             shouldNavigate = false
             isLeader = false
             loginViewModel.resetLoginState()
-            println("LoginScreen: Estados reiniciados tras fallo de login")
+            //println("LoginScreen: Estados reiniciados tras fallo de login")
             // Mostrar dialog de error o mensaje al usuario
-            errorMessage = "Usuario o contraseña incorrectos."
+            errorMessage = incorrectCredentials
             showErrorDialog = true
-            // Reinicia el estado de loginSuccess para permitir nuevos intentos
-            // TO-DO: Mostrar dialog de error o mensaje al usuario
         }
     }
 
     if (showErrorDialog) {
         AlertDialog(
             onDismissRequest = { showErrorDialog = false },
-            title = { Text(text = "Error de inicio de sesión", textAlign = TextAlign.Center, color = Color(0xFF1A4E85), fontWeight = FontWeight.Bold) },
+            title = { Text(text = stringResource(id = R.string.error_title), textAlign = TextAlign.Center, color = Color(0xFF1A4E85), fontWeight = FontWeight.Bold) },
             text = { Text(text = errorMessage, textAlign = TextAlign.Center, fontSize = 16.sp)},
             confirmButton = {
                 TextButton(onClick = { showErrorDialog = false }) {
-                    Text("Aceptar", color = Color(0xFF1A4E85))
+                    Text(stringResource(id = R.string.accept), color = Color(0xFF1A4E85))
                 }
             }
         )
@@ -132,20 +135,20 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
             text = "SynHub",
             fontSize = 70.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF1A4E85),
+            color = cPrimary(),
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(bottom = 20.dp)
         )
         Image(
-            painter = painterResource(id = R.drawable.synhub_logo),
+            painter = painterResource(id = R.drawable.synhub_logo_transparent),
             contentDescription = null,
             modifier = Modifier
                 .height(200.dp)
         )
         Text(
-            text = "Login",
+            text = stringResource(id = R.string.login_message),
             fontSize = 20.sp,
-            color = Color(0xFF000000),
+            color = cTextPrimary(),
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
@@ -154,12 +157,12 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
             value = txtUser,
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Insert User")},
-            placeholder = { Text(text = "User")},
+            label = { Text(text = stringResource(id = R.string.insert_user_label))},
+            placeholder = { Text(text = stringResource(id = R.string.user_placeholder))},
             leadingIcon = {
                 Icon(
                     imageVector = personSVG,
-                    tint = Color.Gray,
+                    tint = cTextMuted(),
                     contentDescription = ""
                 )
             },
@@ -167,8 +170,8 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
                 keyboardType = KeyboardType.Text
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {txtUser=it}
@@ -178,8 +181,8 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
             value = txtPass,
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Insert Password")},
-            placeholder = { Text(text = "password")},
+            label = { Text(text = stringResource(id = R.string.insert_password_label))},
+            placeholder = { Text(text = stringResource(id = R.string.password_placeholder))},
             leadingIcon = {
                 Icon(
                     imageVector = lockSVG,
@@ -191,8 +194,8 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
                 keyboardType = KeyboardType.Password
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             visualTransformation = PasswordVisualTransformation(),
@@ -205,17 +208,17 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
             modifier = Modifier,
             onClick = {
                 loginViewModel.signIn(txtUser, txtPass)
-                println("LoginScreen: Intentando iniciar sesión con usuario: $txtUser")
+                //println("LoginScreen: Intentando iniciar sesión con usuario: $txtUser")
             }
         ) {
             Text(
-                text = "Iniciar Sesion", fontSize = 20.sp,
+                text = stringResource(id = R.string.sign_in), fontSize = 20.sp,
                 color = Color.White, fontWeight = FontWeight.Bold
             )
         }
 
         ElevatedButton(
-            colors = ButtonDefaults.buttonColors(Color(0xFFFFFFFF)),
+            colors = ButtonDefaults.buttonColors(cSurface()),
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier,
             onClick = {
@@ -223,8 +226,8 @@ fun LoginScreen(modifier: Modifier, nav: NavHostController , loginViewModel: Log
             }
         ) {
             Text(
-                text = "Registrase", fontSize = 20.sp,
-                color = Color.Black, fontWeight = FontWeight.Bold
+                text = stringResource(id = R.string.sign_up), fontSize = 20.sp,
+                color = cTextPrimary(), fontWeight = FontWeight.Bold
             )
 
         }

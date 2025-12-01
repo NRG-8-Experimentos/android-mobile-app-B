@@ -31,6 +31,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.synhub.groups.application.dto.GroupRequest
@@ -39,18 +40,21 @@ import com.example.synhub.shared.components.TopBar
 import com.example.synhub.shared.icons.abcSVG
 import com.example.synhub.shared.icons.keyboardSVG
 import com.example.synhub.shared.icons.linkSVG
-
+import nrg.inc.synhub.R
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 @Composable
 fun CreateGroup(nav: NavHostController) {
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background
+        ,
         topBar = {
             TopBar(
                 function = {
                     nav.popBackStack()
                 },
-                "Crear Grupo",
+                stringResource(id = R.string.create_group),
                 Icons.AutoMirrored.Filled.ArrowBack
             )
         }
@@ -88,12 +92,12 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
             value = txtNameGroup,
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Nombre de grupo")},
-            placeholder = { Text(text = "Nombre de grupo")},
+            label = { Text(text = stringResource(id = R.string.group_name))},
+            placeholder = { Text(text = stringResource(id = R.string.group_name))},
             leadingIcon = {
                 Icon(
                     imageVector = abcSVG,
-                    tint = Color.Gray,
+                    tint = cTextMuted(),
                     contentDescription = ""
                 )
             },
@@ -101,8 +105,8 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
                 keyboardType = KeyboardType.Text
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {txtNameGroup=it}
@@ -111,12 +115,12 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
         OutlinedTextField(
             value = txtDescriptionGroup,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Descripción del grupo")},
-            placeholder = { Text(text = "Descripción")},
+            label = { Text(text = stringResource(id = R.string.group_description))},
+            placeholder = { Text(text = stringResource(id = R.string.description))},
             leadingIcon = {
                 Icon(
                     imageVector = keyboardSVG,
-                    tint = Color.Gray,
+                    tint = cTextMuted(),
                     contentDescription = ""
                 )
             },
@@ -124,8 +128,8 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
                 keyboardType = KeyboardType.Text
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {txtDescriptionGroup=it}
@@ -135,12 +139,12 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
             value = txtUrlPfp,
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Url de la foto de perfil")},
-            placeholder = { Text(text = "Url de la foto de perfil")},
+            label = { Text(text = stringResource(id = R.string.url_pfp_label))},
+            placeholder = { Text(text = stringResource(id = R.string.placeholder_url_pfp))},
             leadingIcon = {
                 Icon(
                     imageVector = linkSVG,
-                    tint = Color.Gray,
+                    tint = cTextMuted(),
                     contentDescription = ""
                 )
             },
@@ -148,8 +152,8 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
                 keyboardType = KeyboardType.Uri
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color.White,
+                focusedContainerColor = cSurface(),
+                unfocusedContainerColor = cSurface(),
                 cursorColor = Color.Cyan
             ),
             onValueChange = {txtUrlPfp=it}
@@ -174,7 +178,7 @@ fun CreateGroupScreen(modifier: Modifier, nav: NavHostController) {
             }
         ) {
             Text(
-                text = "Crear Grupo", fontSize = 20.sp,
+                text = stringResource(id = R.string.create_group), fontSize = 20.sp,
                 color = Color.White, fontWeight = FontWeight.Bold
             )
 

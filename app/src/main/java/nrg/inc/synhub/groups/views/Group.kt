@@ -52,10 +52,14 @@ import com.example.synhub.groups.application.dto.GroupMember
 import com.example.synhub.shared.components.TopBar
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import nrg.inc.synhub.R
+import com.example.synhub.shared.theme.*
+import androidx.compose.material3.MaterialTheme
 
 @Composable
 fun Group(nav: NavHostController) {
@@ -67,13 +71,13 @@ fun Group(nav: NavHostController) {
 
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFFFFFFF),
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar(
                 function = {
                     nav.navigate("Home")
                 },
-                group?.name ?: "Grupo",
+                group?.name ?: stringResource(id = R.string.group_title),
                 Icons.AutoMirrored.Filled.ArrowBack
             )
         }
@@ -125,7 +129,7 @@ fun GroupScreen(modifier: Modifier, nav: NavHostController) {
                         ) {
                             Card(
                                 shape = RoundedCornerShape(10.dp),
-                                colors = cardColors(containerColor = Color(0xFF4A90E2)),
+                                colors = cardColors(containerColor = cInfoBlu),
                                 modifier = Modifier
                                     .shadow(
                                         elevation = 5.dp,
@@ -154,7 +158,7 @@ fun GroupScreen(modifier: Modifier, nav: NavHostController) {
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Share,
-                                    contentDescription = "Copiar código",
+                                    contentDescription = stringResource(id = R.string.group_copy_code_description),
                                     tint = Color(0xFF4A90E2)
                                 )
                             }
@@ -180,7 +184,7 @@ fun GroupScreen(modifier: Modifier, nav: NavHostController) {
                     modifier = Modifier.padding(bottom = 26.dp),
                 ){
                     Text(
-                        "Integrantes del grupo",
+                        stringResource(id = R.string.members_title),
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFF1A4E85),
@@ -202,14 +206,14 @@ fun GroupScreen(modifier: Modifier, nav: NavHostController) {
                                 clip = true
                             ),
                         shape = RoundedCornerShape(10.dp),
-                        colors = cardColors(containerColor = Color(0xFFF5F5F5))
+                        colors = cardColors(containerColor = cCard())
                     ) {
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(20.dp),
                             shape = RoundedCornerShape(10.dp),
-                            colors = cardColors(containerColor = Color.White)
+                            colors = cardColors(containerColor = cSurface())
                         ) {
                             LazyColumn(
                                 contentPadding = PaddingValues(5.dp),
@@ -253,7 +257,7 @@ fun GroupScreen(modifier: Modifier, nav: NavHostController) {
                                             Text(
                                                 text = member.username,
                                                 fontSize = 14.sp,
-                                                color = Color.Gray
+                                                color = cTextMuted()
                                             )
                                         }
                                         IconButton(
@@ -275,8 +279,8 @@ fun GroupScreen(modifier: Modifier, nav: NavHostController) {
         if (showDialog.value && memberToDelete.value != null) {
             AlertDialog(
                 onDismissRequest = { showDialog.value = false },
-                title = { Text("Confirmar eliminación", fontWeight = FontWeight.Bold) },
-                text = { Text("¿Estás seguro de que deseas eliminar a ${memberToDelete.value!!.name} ${memberToDelete.value!!.surname} (${memberToDelete.value!!.username}) del grupo?") },
+                title = { Text(stringResource(id = R.string.confirm_delete), fontWeight = FontWeight.Bold) },
+                text = { Text(stringResource(id = R.string.member_details_confirm_delete_member_text, memberToDelete.value!!.name, memberToDelete.value!!.surname, memberToDelete.value!!.username)) },
                 confirmButton = {
                     ElevatedButton(
                         colors = ButtonDefaults.buttonColors(Color(0xFFF44336)),
@@ -289,7 +293,7 @@ fun GroupScreen(modifier: Modifier, nav: NavHostController) {
                             memberToDelete.value = null
                         }
                     }) {
-                        Text("Eliminar", color = Color.White)
+                        Text(stringResource(id = R.string.delete), color = Color.White)
                     }
                 },
                 dismissButton = {
@@ -299,7 +303,7 @@ fun GroupScreen(modifier: Modifier, nav: NavHostController) {
                         showDialog.value = false
                         memberToDelete.value = null
                     }) {
-                        Text("Cancelar", color = Color.White)
+                        Text(stringResource(id = R.string.cancel), color = Color.White)
                     }
                 }
             )
@@ -332,9 +336,9 @@ fun NoGroup(nav: NavHostController){
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "No Haz Creado tu grupo todavia",
+                    text = stringResource(id = R.string.no_group),
                     fontSize = 25.sp,
-                    color = Color(0xFFFFFFFF)
+                    color = Color.White
                 )
                 ElevatedButton(
                     colors = ButtonDefaults.buttonColors(Color(0xFF4A90E2)),
@@ -344,7 +348,7 @@ fun NoGroup(nav: NavHostController){
                     }
                 ) {
                     Text(
-                        text = "Crear Grupo", fontSize = 20.sp,
+                        text = stringResource(id = R.string.create_group), fontSize = 20.sp,
                         color = Color.White, fontWeight = FontWeight.Bold
                     )
                 }
