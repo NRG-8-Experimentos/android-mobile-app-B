@@ -8,6 +8,7 @@ import com.example.synhub.invitations.model.response.InvitationsWebService
 import com.example.synhub.shared.model.response.LogInWebService
 import com.example.synhub.shared.model.response.HomeWebService
 import com.example.synhub.shared.model.response.RegisterWebService
+import nrg.inc.synhub.notifications.services.NotificationService
 import nrg.inc.synhub.tasks.model.response.TasksWebService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -53,4 +54,7 @@ object RetrofitClient {
     val invitationsWebService: InvitationsWebService = retrofit.create(InvitationsWebService::class.java)
     val registerWebService: RegisterWebService = retrofit.create(RegisterWebService::class.java)
     val analyticsWebService: AnalyticsWebService = retrofit.create(AnalyticsWebService::class.java)
+
+    val notificationService: NotificationService by lazy { retrofit.create(NotificationService::class.java) }
+
 }
